@@ -1,0 +1,9 @@
+﻿[$RootKey$\TextMate\Repositories]
+"T4"="$PackageFolder$\Syntaxes"
+
+[$RootKey$\ShellFileAssociations\.t4]
+"DefaultIconMoniker"="KnownMonikers.TextFile"
+;[$RootKey$\ShellFileAssociations\.tt]
+;"DefaultIconMoniker"="KnownMonikers.TextFile"
+[$RootKey$\ShellFileAssociations\.ttinclude]
+"DefaultIconMoniker"="KnownMonikers.TextFile"

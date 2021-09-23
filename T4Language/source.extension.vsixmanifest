@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="97edd510-988c-473f-9858-ddd5223eab1d" Version="1.0.0" Language="en-US" Publisher="Brice Lambson" />
+    <DisplayName>T4 Language</DisplayName>
+    <Description xml:space="preserve">Basic language support for .tt files</Description>
+    <MoreInfo>https://github.com/bricelam/T4Language</MoreInfo>
+    <Icon>Resources\Icon128x128.png</Icon>
+    <PreviewImage>Resources\Icon128x128.png</PreviewImage>
+    <Tags>T4, Text Template</Tags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0, 17.0)" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
+      <ProductArchitecture>amd64</ProductArchitecture>
+    </InstallationTarget>
+  </Installation>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,)" DisplayName="Visual Studio core editor" />
+  </Prerequisites>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="File" Path="Grammars.pkgdef" />
+  </Assets>
+</PackageManifest>

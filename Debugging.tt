@@ -1,0 +1,13 @@
+<#@ directive parameter1="value1" paramter2="value2" #>
+
+"Text block" \<#
+
+<#
+    /* Standard control block \#> */
+#>
+
+<#= "Expression control block" #>
+
+<#+
+    // Class feature control block
+#>
