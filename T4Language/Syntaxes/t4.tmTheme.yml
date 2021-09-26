@@ -1,0 +1,74 @@
+﻿name: T4 TextMate Theme
+settings:
+
+  - scope: keyword.control.t4
+    settings:
+      vsclassificationtype: HTML Server-Side Script
+  - scope: punctuation.separator.key-value.t4
+    settings:
+      vsclassificationtype: HTML Operator
+
+  # Visual Studio Global TextMate Theme
+  - scope: entity.name.tag, meta.tag, punctuation.section.embedded.begin.metatag, punctuation.section.embedded.end.metatag
+    settings:
+      vsclassificationtype: markup node
+  - scope: invalid.illegal.attribute, entity.other.attribute-name
+    settings:
+      vsclassificationtype: markup attribute
+  - scope: string.quoted.double.xml, string.quoted.single.xml, string.quoted.double.html, string.quoted.single.html
+    settings:
+      vsclassificationtype: markup attribute value
+  - scope: entity.name.tag.wildcard.css, entity.other.attribute-name.class.css, entity.other.attribute-name.id.css, entity.other.attribute-name.pseudo-element.css, entity.other.attribute-name.pseudo-class.css, entity.other.attribute-name.pseudo-class.ui-state.css, entity.other.attribute-name.attribute.css
+    settings:
+      vsclassificationtype: symbol reference
+  - scope: storage.modifier, keyword, new.storage, entity.name.tag.doctype.html, storage.control, storage.type, support.function
+    settings:
+      vsclassificationtype: keyword
+  - scope: support.type, constant.keyword, entity.global, entity.name, entity.name.tag.yaml, support.class, entity.other.inherited-class
+    settings:
+      vsclassificationtype: type
+  - scope: meta.preprocessor keyword
+    settings:
+      vsclassificationtype: preprocessor keyword
+  - scope: constant.language, variable.language
+    settings:
+      vsclassificationtype: keyword
+  - scope: string, punctuation.definition.string, punctuation.definition.template-expression, constant.character.escape, constant.regexp, markup.heading
+    settings:
+      vsclassificationtype: string
+  - scope: keyword.control.anchor.regexp, keyword.other.back-reference.regexp, keyword.operator.quantifier.regexp, keyword.operator.or.regexp, keyword.operator.negation.regexp
+    settings:
+      vsclassificationtype: string
+  - scope: constant.numeric, meta.delimiter.decimal.period, constant.language.nan, constant.language.infinity
+    settings:
+      vsclassificationtype: number
+  - scope: keyword.operator, storage.type.function.arrow
+    settings:
+      vsclassificationtype: operator
+  - scope: meta.brace.angle, meta.brace.round, meta.brace.square, punctuation.definition
+    settings:
+      vsclassificationtype: operator
+  - scope: comment, punctuation.definition.comment
+    settings:
+      vsclassificationtype: comment
+  - scope: punctuation.definition.heading
+    settings:
+      vsclassificationtype: comment
+  - scope: comment.block.documentation, other.meta.jsdoc, other.description.jsdoc
+    settings:
+      vsclassificationtype: comment
+  - scope: variable, entity - entity.name.type
+    settings:
+      vsclassificationtype: identifier
+  - scope: storage.type.class.jsdoc
+    settings:
+      vsclassificationtype: comment
+  - scope: meta.tag.open string.quoted, meta.tag.open string.quoted punctuation.definition.string, meta.tag.open string.quoted constant.character.entity, meta.tag.open string.quoted constant.character.entity punctuation.definition.entity
+    settings:
+      vsclassificationtype: string
+  - scope: constant.character.entity, punctuation.definition.entity, invalid.illegal.bad-ampersand
+    settings:
+      vsclassificationtype: Literal
+  - scope: constant.language.undefined
+    settings:
+      vsclassificationtype: identifier

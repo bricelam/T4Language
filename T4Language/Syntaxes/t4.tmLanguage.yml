@@ -1,0 +1,48 @@
+name: T4 Text Template
+scopeName: source.t4
+fileTypes:
+  - t4
+  - tt
+  - ttinclude
+patterns:
+  - begin: "(?<!\\\\)(<#@)\\s*([-_a-zA-Z0-9:]+)"
+    beginCaptures:
+      1:
+        name: keyword.control.t4
+      2:
+        name: entity.name.tag.t4
+    patterns:
+      - match: "([-_a-zA-Z0-9]+)(=)"
+        captures:
+          1:
+            name: entity.other.attribute-name.t4
+          2:
+            name: punctuation.separator.key-value.t4
+      - begin: "\""
+        end: "\""
+        name: string.quoted.double.xml
+    end: "(?<!\\\\)#>"
+    endCaptures:
+      0:
+        name: keyword.control.t4
+  - begin: "(?<!\\\\)<#(?![@=\\+])"
+    captures:
+      0:
+        name: keyword.control.t4
+    patterns:
+      - include: source.cs#statement
+    end: "(?<!\\\\)#>"
+  - begin: "(?<!\\\\)<#="
+    captures:
+      0:
+        name: keyword.control.t4
+    patterns:
+      - include: source.cs#expression
+    end: "(?<!\\\\)#>"
+  - begin: "(?<!\\\\)<#\\+"
+    captures:
+      0:
+        name: keyword.control.t4
+    patterns:
+      - include: source.cs#class-members
+    end: "(?<!\\\\)#>"

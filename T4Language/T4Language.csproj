@@ -59,12 +59,16 @@
       <Link>Syntaxes\csharp.tmLanguage</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Syntaxes\t4.tmLanguage.json">
+    <Content Include="Syntaxes\t4.tmLanguage">
+      <DependentUpon>t4.tmLanguage.yml</DependentUpon>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Syntaxes\t4.tmLanguage.tmTheme">
+    <None Include="Syntaxes\t4.tmLanguage.yml" />
+    <Content Include="Syntaxes\t4.tmTheme">
+      <DependentUpon>t4.tmTheme.yml</DependentUpon>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <None Include="Syntaxes\t4.tmTheme.yml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
