@@ -1,13 +1,76 @@
-<#@ directive parameter1="value1" paramter2="value2" #>
+<#@ template language="C#" debug="true" #>
 
-"Text block" \<#
+This is a text block.
+
+Code is not highlighted.
+highlighted = false;
+
+Delimeters like \<# can be escaped.
 
 <#
-    /* Standard control block \#> */
+    // This is a standard control block.
+
+    // Code is highlighted.
+
+    // Delimeters can be escaped.
+    const string delimeter = "\#>";
+
+    // Blocks can be interrupted
+    {
 #>
 
-<#= "Expression control block" #>
+This is an interrupting text block.
+
+Code is not highlighted.
+highlighted = false;
+
+<#
+        // This is a continuing standard control block.
+
+        // Code is highlighted.
+    }
+#>
+
+<#=
+    @"This is an expression control block.
+
+    Code is highlighted.
+
+    Delimeters like \#> can be escaped."
+#>
 
 <#+
-    // Class feature control block
+    // This is a class feature control block
+
+    // Code is highlighted.
+
+    // Delimeters can be escaped.
+    const string Delimeter = "\#>";
+
+    // Blocks can be interrupted
+    void Method()
+    {
+#>
+
+This is an interrupting text block.
+
+Code is not highlighted.
+highlighted = false;
+
+<#=
+    @"This is an double-interrupting expression control block.
+
+    Code is highlighted."
+#>
+
+This is a continuing text block.
+
+Code is not highlighted.
+highlighted = false;
+
+<#+
+        // This is a continue class feature control block.
+
+        // Code is highlighted.
+    }
 #>
