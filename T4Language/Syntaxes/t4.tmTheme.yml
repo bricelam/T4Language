@@ -1,12 +1,15 @@
 ﻿name: T4 TextMate Theme
 settings:
 
-  - scope: keyword.control.t4
+  - scope: punctuation.definition.tag.begin.tt, punctuation.definition.tag.end.tt, punctuation.section.embedded.begin.tt, punctuation.section.embedded.end.tt
     settings:
       vsclassificationtype: HTML Server-Side Script
-  - scope: punctuation.separator.key-value.t4
+  - scope: punctuation.separator.key-value.tt
     settings:
       vsclassificationtype: HTML Operator
+  - scope: string.quoted.double.tt
+    settings:
+      vsclassificationtype: Markup Attribute Value
 
   # Visual Studio Global TextMate Theme
   - scope: entity.name.tag, meta.tag, punctuation.section.embedded.begin.metatag, punctuation.section.embedded.end.metatag

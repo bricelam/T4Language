@@ -8,7 +8,7 @@
     <array>
       <dict>
         <key>scope</key>
-        <string>keyword.control.t4</string>
+        <string>punctuation.definition.tag.begin.tt, punctuation.definition.tag.end.tt, punctuation.section.embedded.begin.tt, punctuation.section.embedded.end.tt</string>
         <key>settings</key>
         <dict>
           <key>vsclassificationtype</key>
@@ -17,11 +17,20 @@
       </dict>
       <dict>
         <key>scope</key>
-        <string>punctuation.separator.key-value.t4</string>
+        <string>punctuation.separator.key-value.tt</string>
         <key>settings</key>
         <dict>
           <key>vsclassificationtype</key>
           <string>HTML Operator</string>
+        </dict>
+      </dict>
+      <dict>
+        <key>scope</key>
+        <string>string.quoted.double.tt</string>
+        <key>settings</key>
+        <dict>
+          <key>vsclassificationtype</key>
+          <string>Markup Attribute Value</string>
         </dict>
       </dict>
       <dict>

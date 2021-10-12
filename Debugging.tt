@@ -16,6 +16,7 @@ Delimeters like \<# can be escaped.
     const string delimeter = "\#>";
 
     // Blocks can be interrupted
+    if (true)
     {
 #>
 

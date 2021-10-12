@@ -1,48 +1,51 @@
 name: T4 Text Template
-scopeName: source.t4
-fileTypes:
-  - t4
-  - tt
-  - ttinclude
+scopeName: text.tt
+fileTypes: [ t4, tt, ttinclude ]
 patterns:
-  - begin: "(?<!\\\\)(<#@)\\s*([-_a-zA-Z0-9:]+)"
-    beginCaptures:
-      1:
-        name: keyword.control.t4
-      2:
-        name: entity.name.tag.t4
-    patterns:
-      - match: "([-_a-zA-Z0-9]+)(=)"
-        captures:
-          1:
-            name: entity.other.attribute-name.t4
-          2:
-            name: punctuation.separator.key-value.t4
-      - begin: "\""
-        end: "\""
-        name: string.quoted.double.xml
-    end: "(?<!\\\\)#>"
-    endCaptures:
-      0:
-        name: keyword.control.t4
-  - begin: "(?<!\\\\)<#(?![@=\\+])"
+
+# Directives
+- begin: (?<!\\)(<#@)\s*([-_a-zA-Z0-9:]+)
+  beginCaptures:
+    1: { name: punctuation.definition.tag.begin.tt }
+    2: { name: entity.name.tag.tt }
+  patterns:
+  - match: ([-_a-zA-Z0-9]+)(=)((")[^"]*("))
     captures:
-      0:
-        name: keyword.control.t4
-    patterns:
-      - include: source.cs#statement
-    end: "(?<!\\\\)#>"
-  - begin: "(?<!\\\\)<#="
-    captures:
-      0:
-        name: keyword.control.t4
-    patterns:
-      - include: source.cs#expression
-    end: "(?<!\\\\)#>"
-  - begin: "(?<!\\\\)<#\\+"
-    captures:
-      0:
-        name: keyword.control.t4
-    patterns:
-      - include: source.cs#class-members
-    end: "(?<!\\\\)#>"
+      1: { name: entity.other.attribute-name.tt }
+      2: { name: punctuation.separator.key-value.tt }
+      3: { name: string.quoted.double.tt }
+      4: { name: punctuation.definition.string.begin.tt }
+      5: { name: punctuation.definition.string.end.tt }
+  end: (?<!\\)#>
+  endCaptures:
+    0: { name: punctuation.definition.tag.end.tt }
+
+# Expression Control Blocks
+- begin: (?<!\\)<#=
+  beginCaptures:
+    0: { name: punctuation.section.embedded.begin.tt }
+  patterns:
+  - include: source.cs
+  end: (?<!\\)#>
+  endCaptures:
+    0: { name: punctuation.section.embedded.end.tt }
+
+# Class Feature Control Blocks
+- begin: (?<!\\)<#\+
+  beginCaptures:
+    0: { name: punctuation.section.embedded.begin.tt }
+  patterns:
+  - include: source.cs
+  end: (?<!\\)#>
+  endCaptures:
+    0: { name: punctuation.section.embedded.end.tt }
+
+# Standard Control Blocks
+- begin: (?<!\\)<#
+  beginCaptures:
+    0: { name: punctuation.section.embedded.begin.tt }
+  patterns:
+  - include: source.cs
+  end: (?<!\\)#>
+  endCaptures:
+    0: { name: punctuation.section.embedded.end.tt }

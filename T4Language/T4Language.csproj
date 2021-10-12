@@ -55,14 +55,15 @@
     <Content Include="Resources\Icon128x128.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="$(DevEnvDir)CommonExtensions\Microsoft\TextMate\Starterkit\Extensions\csharp\Syntaxes\csharp.tmLanguage">
-      <Link>Syntaxes\csharp.tmLanguage</Link>
+    <Content Include="Syntaxes\csharp.tmLanguage">
+      <DependentUpon>csharp.tmLanguage.yml</DependentUpon>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Syntaxes\t4.tmLanguage">
       <DependentUpon>t4.tmLanguage.yml</DependentUpon>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <None Include="Syntaxes\csharp.tmLanguage.yml" />
     <None Include="Syntaxes\t4.tmLanguage.yml" />
     <Content Include="Syntaxes\t4.tmTheme">
       <DependentUpon>t4.tmTheme.yml</DependentUpon>

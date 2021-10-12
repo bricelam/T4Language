@@ -5,7 +5,7 @@
     <key>name</key>
     <string>T4 Text Template</string>
     <key>scopeName</key>
-    <string>source.t4</string>
+    <string>text.tt</string>
     <key>fileTypes</key>
     <array>
       <string>t4</string>
@@ -22,40 +22,47 @@
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>keyword.control.t4</string>
+            <string>punctuation.definition.tag.begin.tt</string>
           </dict>
           <key>2</key>
           <dict>
             <key>name</key>
-            <string>entity.name.tag.t4</string>
+            <string>entity.name.tag.tt</string>
           </dict>
         </dict>
         <key>patterns</key>
         <array>
           <dict>
             <key>match</key>
-            <string>([-_a-zA-Z0-9]+)(=)</string>
+            <string>([-_a-zA-Z0-9]+)(=)((")[^"]*("))</string>
             <key>captures</key>
             <dict>
               <key>1</key>
               <dict>
                 <key>name</key>
-                <string>entity.other.attribute-name.t4</string>
+                <string>entity.other.attribute-name.tt</string>
               </dict>
               <key>2</key>
               <dict>
                 <key>name</key>
-                <string>punctuation.separator.key-value.t4</string>
+                <string>punctuation.separator.key-value.tt</string>
+              </dict>
+              <key>3</key>
+              <dict>
+                <key>name</key>
+                <string>string.quoted.double.tt</string>
+              </dict>
+              <key>4</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.definition.string.begin.tt</string>
+              </dict>
+              <key>5</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.definition.string.end.tt</string>
               </dict>
             </dict>
-          </dict>
-          <dict>
-            <key>begin</key>
-            <string>"</string>
-            <key>end</key>
-            <string>"</string>
-            <key>name</key>
-            <string>string.quoted.double.xml</string>
           </dict>
         </array>
         <key>end</key>
@@ -65,72 +72,96 @@
           <key>0</key>
           <dict>
             <key>name</key>
-            <string>keyword.control.t4</string>
+            <string>punctuation.definition.tag.end.tt</string>
           </dict>
         </dict>
-      </dict>
-      <dict>
-        <key>begin</key>
-        <string>(?&lt;!\\)&lt;#(?![@=\+])</string>
-        <key>captures</key>
-        <dict>
-          <key>0</key>
-          <dict>
-            <key>name</key>
-            <string>keyword.control.t4</string>
-          </dict>
-        </dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>include</key>
-            <string>source.cs#statement</string>
-          </dict>
-        </array>
-        <key>end</key>
-        <string>(?&lt;!\\)#&gt;</string>
       </dict>
       <dict>
         <key>begin</key>
         <string>(?&lt;!\\)&lt;#=</string>
-        <key>captures</key>
+        <key>beginCaptures</key>
         <dict>
           <key>0</key>
           <dict>
             <key>name</key>
-            <string>keyword.control.t4</string>
+            <string>punctuation.section.embedded.begin.tt</string>
           </dict>
         </dict>
         <key>patterns</key>
         <array>
           <dict>
             <key>include</key>
-            <string>source.cs#expression</string>
+            <string>source.cs</string>
           </dict>
         </array>
         <key>end</key>
         <string>(?&lt;!\\)#&gt;</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.section.embedded.end.tt</string>
+          </dict>
+        </dict>
       </dict>
       <dict>
         <key>begin</key>
         <string>(?&lt;!\\)&lt;#\+</string>
-        <key>captures</key>
+        <key>beginCaptures</key>
         <dict>
           <key>0</key>
           <dict>
             <key>name</key>
-            <string>keyword.control.t4</string>
+            <string>punctuation.section.embedded.begin.tt</string>
           </dict>
         </dict>
         <key>patterns</key>
         <array>
           <dict>
             <key>include</key>
-            <string>source.cs#class-members</string>
+            <string>source.cs</string>
           </dict>
         </array>
         <key>end</key>
         <string>(?&lt;!\\)#&gt;</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.section.embedded.end.tt</string>
+          </dict>
+        </dict>
+      </dict>
+      <dict>
+        <key>begin</key>
+        <string>(?&lt;!\\)&lt;#</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.section.embedded.begin.tt</string>
+          </dict>
+        </dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>source.cs</string>
+          </dict>
+        </array>
+        <key>end</key>
+        <string>(?&lt;!\\)#&gt;</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.section.embedded.end.tt</string>
+          </dict>
+        </dict>
       </dict>
     </array>
   </dict>
