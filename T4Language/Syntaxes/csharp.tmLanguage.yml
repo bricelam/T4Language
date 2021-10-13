@@ -104,7 +104,7 @@ repository:
         0: { name: punctuation.section.embedded.end.tt }
       patterns:
       - include: text.tt
-      end: (?<!\\)<#
+      end: (?<!\\)<#\+?(?![@=])
       endCaptures:
         0: { name: punctuation.section.embedded.begin.tt }
     - include: '#preprocessor'

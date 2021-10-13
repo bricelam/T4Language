@@ -276,7 +276,7 @@
               </dict>
             </array>
             <key>end</key>
-            <string>(?&lt;!\\)&lt;#</string>
+            <string>(?&lt;!\\)&lt;#\+?(?![@=])</string>
             <key>endCaptures</key>
             <dict>
               <key>0</key>

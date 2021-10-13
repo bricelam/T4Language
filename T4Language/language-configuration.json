@@ -1,8 +1,18 @@
 {
+  "brackets": [
+    [ "<#", "#>" ]
+  ],
   "autoClosingPairs": [
     {
       "open": "<#",
       "close": "#>"
+    }
+  ],
+  "onEnterRules": [
+    {
+      "beforeText": "(?<!\\\\)<#\\+?",
+      "afterText": "(?<!\\\\)#>",
+      "action": { "indent": "indentOutdent" }
     }
   ]
 }
