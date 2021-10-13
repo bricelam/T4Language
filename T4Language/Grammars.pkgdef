@@ -1,6 +1,12 @@
 ﻿[$RootKey$\TextMate\Repositories]
 "T4"="$PackageFolder$\Syntaxes"
 
+[$RootKey$\TextMate\LanguageConfiguration\GrammarMapping]
+"text.tt"="$PackageFolder$\language-configuration.json"
+
+;[$RootKey$\TextMate\LanguageConfiguration\ContentTypeMapping]
+;"T4"="$PackageFolder$\language-configuration.json"
+
 [$RootKey$\ShellFileAssociations\.t4]
 "DefaultIconMoniker"="KnownMonikers.TextFile"
 ;[$RootKey$\ShellFileAssociations\.tt]
