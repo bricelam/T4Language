@@ -3,13 +3,19 @@ settings:
 
   - scope: punctuation.definition.tag.begin.tt, punctuation.definition.tag.end.tt, punctuation.section.embedded.begin.tt, punctuation.section.embedded.end.tt
     settings:
-      vsclassificationtype: HTML Server-Side Script
+      vsclassificationtype: T4 Delimiter
   - scope: punctuation.separator.key-value.tt
     settings:
-      vsclassificationtype: HTML Operator
+      vsclassificationtype: T4 Operator
   - scope: string.quoted.double.tt
     settings:
-      vsclassificationtype: Markup Attribute Value
+      vsclassificationtype: T4 Attribute Value
+  - scope: entity.name.tag.tt
+    settings:
+      vsclassificationtype: T4 Directive
+  - scope: entity.other.attribute-name.tt
+    settings:
+      vsclassificationtype: T4 Attribute
 
   # Visual Studio Global TextMate Theme
   - scope: entity.name.tag, meta.tag, punctuation.section.embedded.begin.metatag, punctuation.section.embedded.end.metatag

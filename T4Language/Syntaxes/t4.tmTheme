@@ -12,7 +12,7 @@
         <key>settings</key>
         <dict>
           <key>vsclassificationtype</key>
-          <string>HTML Server-Side Script</string>
+          <string>T4 Delimiter</string>
         </dict>
       </dict>
       <dict>
@@ -21,7 +21,7 @@
         <key>settings</key>
         <dict>
           <key>vsclassificationtype</key>
-          <string>HTML Operator</string>
+          <string>T4 Operator</string>
         </dict>
       </dict>
       <dict>
@@ -30,7 +30,25 @@
         <key>settings</key>
         <dict>
           <key>vsclassificationtype</key>
-          <string>Markup Attribute Value</string>
+          <string>T4 Attribute Value</string>
+        </dict>
+      </dict>
+      <dict>
+        <key>scope</key>
+        <string>entity.name.tag.tt</string>
+        <key>settings</key>
+        <dict>
+          <key>vsclassificationtype</key>
+          <string>T4 Directive</string>
+        </dict>
+      </dict>
+      <dict>
+        <key>scope</key>
+        <string>entity.other.attribute-name.tt</string>
+        <key>settings</key>
+        <dict>
+          <key>vsclassificationtype</key>
+          <string>T4 Attribute</string>
         </dict>
       </dict>
       <dict>
