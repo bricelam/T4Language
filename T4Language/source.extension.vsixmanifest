@@ -5,6 +5,7 @@
         <DisplayName>T4 Language</DisplayName>
         <Description xml:space="preserve">Basic language support for .tt files</Description>
         <MoreInfo>https://github.com/bricelam/T4Language</MoreInfo>
+        <License>Resources\LICENSE.md</License>
         <Icon>Resources\Icon128x128.png</Icon>
         <PreviewImage>Resources\Icon128x128.png</PreviewImage>
         <Tags>T4, Text Template</Tags>
