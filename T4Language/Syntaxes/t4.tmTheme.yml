@@ -9,13 +9,30 @@ settings:
       vsclassificationtype: T4 Operator
   - scope: string.quoted.double.tt
     settings:
-      vsclassificationtype: T4 Attribute Value
+      vsclassificationtype: T4 Argument Value
   - scope: entity.name.tag.tt
     settings:
       vsclassificationtype: T4 Directive
   - scope: entity.other.attribute-name.tt
     settings:
-      vsclassificationtype: T4 Attribute
+      vsclassificationtype: T4 Argument
+
+  # C#
+  - scope: storage.type.cs, entity.name.type.class.cs
+    settings:
+      vsclassificationtype: class name
+  - scope: entity.name.function.cs
+    settings:
+      vsclassificationtype: method name
+  - scope: variable.other.object.cs, entity.name.variable.local.cs
+    settings:
+      vsclassificationtype: local name
+  - scope: keyword.control.conditional, keyword.control.loop, keyword.control.flow
+    settings:
+      vsclassificationtype: keyword - control
+  - scope: entity.name.label.cs, entity.name.variable.parameter.cs
+    settings:
+      vsclassificationtype: parameter name
 
   # Visual Studio Global TextMate Theme
   - scope: entity.name.tag, meta.tag, punctuation.section.embedded.begin.metatag, punctuation.section.embedded.end.metatag

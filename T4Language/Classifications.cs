@@ -9,12 +9,12 @@ namespace T4Language
     {
 #pragma warning disable 649
         [Export]
-        [Name("T4 Attribute")]
-        public static readonly ClassificationTypeDefinition Attribute;
+        [Name("T4 Argument")]
+        public static readonly ClassificationTypeDefinition Argument;
 
         [Export]
-        [Name("T4 Attribute Value")]
-        public static readonly ClassificationTypeDefinition AttributeValue;
+        [Name("T4 Argument Value")]
+        public static readonly ClassificationTypeDefinition ArgumentValue;
 
         [Export]
         [Name("T4 Delimiter")]
@@ -30,24 +30,24 @@ namespace T4Language
 #pragma warning restore 649
 
         [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = "T4 Attribute")]
-        [Name("T4 Attribute")]
+        [ClassificationType(ClassificationTypeNames = "T4 Argument")]
+        [Name("T4 Argument")]
         [UserVisible(true)]
-        class AttributeFormat : ClassificationFormatDefinition
+        class ArgumentFormat : ClassificationFormatDefinition
         {
-            public AttributeFormat()
+            public ArgumentFormat()
             {
                 ForegroundColor = Colors.Red;
             }
         }
 
         [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = "T4 Attribute Value")]
-        [Name("T4 Attribute Value")]
+        [ClassificationType(ClassificationTypeNames = "T4 Argument Value")]
+        [Name("T4 Argument Value")]
         [UserVisible(true)]
-        class AttributeValueFormat : ClassificationFormatDefinition
+        class ArgumentValueFormat : ClassificationFormatDefinition
         {
-            public AttributeValueFormat()
+            public ArgumentValueFormat()
             {
                 ForegroundColor = Colors.Blue;
             }

@@ -30,7 +30,7 @@
         <key>settings</key>
         <dict>
           <key>vsclassificationtype</key>
-          <string>T4 Attribute Value</string>
+          <string>T4 Argument Value</string>
         </dict>
       </dict>
       <dict>
@@ -48,7 +48,52 @@
         <key>settings</key>
         <dict>
           <key>vsclassificationtype</key>
-          <string>T4 Attribute</string>
+          <string>T4 Argument</string>
+        </dict>
+      </dict>
+      <dict>
+        <key>scope</key>
+        <string>storage.type.cs, entity.name.type.class.cs</string>
+        <key>settings</key>
+        <dict>
+          <key>vsclassificationtype</key>
+          <string>class name</string>
+        </dict>
+      </dict>
+      <dict>
+        <key>scope</key>
+        <string>entity.name.function.cs</string>
+        <key>settings</key>
+        <dict>
+          <key>vsclassificationtype</key>
+          <string>method name</string>
+        </dict>
+      </dict>
+      <dict>
+        <key>scope</key>
+        <string>variable.other.object.cs, entity.name.variable.local.cs</string>
+        <key>settings</key>
+        <dict>
+          <key>vsclassificationtype</key>
+          <string>local name</string>
+        </dict>
+      </dict>
+      <dict>
+        <key>scope</key>
+        <string>keyword.control.conditional, keyword.control.loop, keyword.control.flow</string>
+        <key>settings</key>
+        <dict>
+          <key>vsclassificationtype</key>
+          <string>keyword - control</string>
+        </dict>
+      </dict>
+      <dict>
+        <key>scope</key>
+        <string>entity.name.label.cs, entity.name.variable.parameter.cs</string>
+        <key>settings</key>
+        <dict>
+          <key>vsclassificationtype</key>
+          <string>parameter name</string>
         </dict>
       </dict>
       <dict>
