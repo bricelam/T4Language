@@ -1,0 +1,4 @@
+﻿scope: text.tt
+tabTrigger: assembly
+name: Code snippet for assembly directive
+content: '<#@ assembly name="$0" #>'

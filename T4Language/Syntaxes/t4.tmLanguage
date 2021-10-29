@@ -16,7 +16,7 @@
     <array>
       <dict>
         <key>begin</key>
-        <string>(?&lt;!\\)(&lt;#@)\s*([-_a-zA-Z0-9:]+)</string>
+        <string>(?&lt;!\\)(&lt;#@)\s*([_a-zA-Z0-9]*)</string>
         <key>beginCaptures</key>
         <dict>
           <key>1</key>
@@ -34,7 +34,7 @@
         <array>
           <dict>
             <key>match</key>
-            <string>([-_a-zA-Z0-9]+)(=)((")[^"]*("))</string>
+            <string>([_a-zA-Z0-9]+)(=)((")[^"]*("))</string>
             <key>captures</key>
             <dict>
               <key>1</key>

@@ -1,0 +1,4 @@
+﻿scope: text.tt
+tabTrigger: include
+name: Code snippet for include directive
+content: '<#@ include file="$0" #>'

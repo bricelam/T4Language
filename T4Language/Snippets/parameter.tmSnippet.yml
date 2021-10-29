@@ -1,0 +1,4 @@
+﻿scope: text.tt
+tabTrigger: parameter
+name: Code snippet for parameter directive
+content: '<#@ parameter name="${0:MyParameter}" type="${1:System.String}" #>'

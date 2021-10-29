@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>scope</key>
+    <string>text.tt</string>
+    <key>tabTrigger</key>
+    <string>parameter</string>
+    <key>name</key>
+    <string>Code snippet for parameter directive</string>
+    <key>content</key>
+    <string>&lt;#@ parameter name="${0:MyParameter}" type="${1:System.String}" #&gt;</string>
+  </dict>
+</plist>

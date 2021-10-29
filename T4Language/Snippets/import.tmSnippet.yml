@@ -1,0 +1,4 @@
+﻿scope: text.tt
+tabTrigger: import
+name: Code snippet for import directive
+content: '<#@ import namespace="$0" #>'

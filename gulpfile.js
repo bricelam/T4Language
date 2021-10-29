@@ -7,6 +7,18 @@ const plist = require("plist");
 
 gulp.task("default", done => {
     fs.writeFileSync(
+        "T4Language/Snippets/assembly.tmSnippet",
+        plist.build(js_yaml.load(fs.readFileSync("T4Language/Snippets/assembly.tmSnippet.yml"))));
+    fs.writeFileSync(
+        "T4Language/Snippets/import.tmSnippet",
+        plist.build(js_yaml.load(fs.readFileSync("T4Language/Snippets/import.tmSnippet.yml"))));
+    fs.writeFileSync(
+        "T4Language/Snippets/include.tmSnippet",
+        plist.build(js_yaml.load(fs.readFileSync("T4Language/Snippets/include.tmSnippet.yml"))));
+    fs.writeFileSync(
+        "T4Language/Snippets/parameter.tmSnippet",
+        plist.build(js_yaml.load(fs.readFileSync("T4Language/Snippets/parameter.tmSnippet.yml"))));
+    fs.writeFileSync(
         "T4Language/Syntaxes/csharp.tmLanguage",
         plist.build(js_yaml.load(fs.readFileSync("T4Language/Syntaxes/csharp.tmLanguage.yml"))));
     fs.writeFileSync(

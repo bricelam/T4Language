@@ -13,7 +13,7 @@
     <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
     <StartAction>Program</StartAction>
     <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
-    <StartArguments>/rootsuffix Exp</StartArguments>
+    <StartArguments>/rootsuffix Exp ..\..\..\Debugging.tt</StartArguments>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -56,6 +56,26 @@
       <Link>Resources\LICENSE.md</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Snippets\parameter.tmSnippet">
+      <DependentUpon>parameter.tmSnippet.yml</DependentUpon>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\include.tmSnippet">
+      <DependentUpon>include.tmSnippet.yml</DependentUpon>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Snippets\assembly.tmSnippet">
+      <DependentUpon>assembly.tmSnippet.yml</DependentUpon>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <None Include="Snippets\assembly.tmSnippet.yml" />
+    <Content Include="Snippets\import.tmSnippet">
+      <DependentUpon>import.tmSnippet.yml</DependentUpon>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <None Include="Snippets\import.tmSnippet.yml" />
+    <None Include="Snippets\include.tmSnippet.yml" />
+    <None Include="Snippets\parameter.tmSnippet.yml" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
@@ -91,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
+    <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
