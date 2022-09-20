@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.CommonLanguageServerProtocol.Framework;
 
-namespace T4Language;
+namespace T4Language.Server;
 
 class LspLogger : ILspLogger
 {

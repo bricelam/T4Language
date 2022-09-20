@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.Threading;
 using Microsoft.VisualStudio.Utilities;
 using Nerdbank.Streams;
 using StreamJsonRpc;
+using T4Language.Server;
 
 namespace T4Language;
 

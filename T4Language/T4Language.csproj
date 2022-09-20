@@ -100,15 +100,19 @@
     <None Include="Syntaxes\t4.tmTheme.yml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CapabilitiesManager.cs" />
+    <Compile Include="Server\CapabilitiesManager.cs" />
     <Compile Include="Classifications.cs" />
     <Compile Include="ContentTypes.cs" />
+    <Compile Include="Server\Handlers\DidChangeTextDocumentHandler.cs" />
+    <Compile Include="Server\Handlers\DidCloseTextDocumentHandler.cs" />
+    <Compile Include="Server\Handlers\DidOpenTextDocumentHandler.cs" />
     <Compile Include="LanguageClient.cs" />
-    <Compile Include="LanguageServer.cs" />
-    <Compile Include="LspLogger.cs" />
-    <Compile Include="LspServices.cs" />
-    <Compile Include="RequestContext.cs" />
-    <Compile Include="RequestContextFactory.cs" />
+    <Compile Include="Server\LanguageServer.cs" />
+    <Compile Include="Server\LspLogger.cs" />
+    <Compile Include="Server\LspServices.cs" />
+    <Compile Include="Server\RequestContext.cs" />
+    <Compile Include="Server\RequestContextFactory.cs" />
+    <Compile Include="Server\TextDocumentManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -125,6 +129,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Text.UI.Wpf">
       <Version>17.3.198</Version>
+    </PackageReference>
+    <PackageReference Include="Mono.TextTemplating">
+      <Version>2.2.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

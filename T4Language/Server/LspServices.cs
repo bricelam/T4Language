@@ -4,7 +4,7 @@ using System.Collections.Immutable;
 using Microsoft.CommonLanguageServerProtocol.Framework;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace T4Language;
+namespace T4Language.Server;
 
 class LspServices : ILspServices
 {

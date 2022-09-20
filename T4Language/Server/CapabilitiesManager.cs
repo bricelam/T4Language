@@ -1,7 +1,7 @@
 ﻿using Microsoft.CommonLanguageServerProtocol.Framework;
 using Microsoft.VisualStudio.LanguageServer.Protocol;
 
-namespace T4Language;
+namespace T4Language.Server;
 
 internal class CapabilitiesManager : IInitializeManager<InitializeParams, InitializeResult>
 {
@@ -18,7 +18,11 @@ internal class CapabilitiesManager : IInitializeManager<InitializeParams, Initia
         {
             Capabilities = new ServerCapabilities
             {
-                // TODO
+                TextDocumentSync = new TextDocumentSyncOptions
+                {
+                    OpenClose = true,
+                    Change = TextDocumentSyncKind.Full
+                }
             }
         };
 }

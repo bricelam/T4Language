@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.CommonLanguageServerProtocol.Framework;
 
-namespace T4Language;
+namespace T4Language.Server;
 
 class RequestContextFactory : IRequestContextFactory<RequestContext>
 {
