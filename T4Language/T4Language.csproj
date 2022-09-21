@@ -9,8 +9,6 @@
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
     <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
     <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
-    <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
-    <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
     <StartAction>Program</StartAction>
     <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
     <StartArguments>/rootsuffix Exp ..\..\..\Debugging.tt</StartArguments>
@@ -100,6 +98,7 @@
     <None Include="Syntaxes\t4.tmTheme.yml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\InternalsVisibleTo.cs" />
     <Compile Include="Server\CapabilitiesManager.cs" />
     <Compile Include="Classifications.cs" />
     <Compile Include="ContentTypes.cs" />
@@ -107,9 +106,12 @@
     <Compile Include="Server\Handlers\DidCloseTextDocumentHandler.cs" />
     <Compile Include="Server\Handlers\DidOpenTextDocumentHandler.cs" />
     <Compile Include="LanguageClient.cs" />
+    <Compile Include="Server\Handlers\CompletionHandler.cs" />
     <Compile Include="Server\LanguageServer.cs" />
     <Compile Include="Server\LspLogger.cs" />
     <Compile Include="Server\LspServices.cs" />
+    <Compile Include="Server\Metadata\AttributeMetadata.cs" />
+    <Compile Include="Server\Metadata\DirectiveMetadata.cs" />
     <Compile Include="Server\RequestContext.cs" />
     <Compile Include="Server\RequestContextFactory.cs" />
     <Compile Include="Server\TextDocumentManager.cs" />
@@ -130,9 +132,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Text.UI.Wpf">
       <Version>17.3.198</Version>
     </PackageReference>
-    <PackageReference Include="Mono.TextTemplating">
-      <Version>2.2.1</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -143,6 +142,10 @@
     <ProjectReference Include="..\Microsoft.CommonLanguageServerProtocol.Framework\Microsoft.CommonLanguageServerProtocol.Framework.csproj">
       <Project>{08c47e5b-762e-45d9-8a43-128450708b4d}</Project>
       <Name>Microsoft.CommonLanguageServerProtocol.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mono.TextTemplating\Mono.TextTemplating.csproj">
+      <Project>{1dbc32ee-ac7d-4c25-8493-42d2d6625ba5}</Project>
+      <Name>Mono.TextTemplating</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

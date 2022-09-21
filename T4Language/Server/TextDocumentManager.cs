@@ -13,6 +13,10 @@ class TextDocumentManager
     readonly LanguageServer _server;
     readonly Dictionary<Uri, ParsedTemplate> _openDocuments = new Dictionary<Uri, ParsedTemplate>();
 
+    protected TextDocumentManager()
+    {
+    }
+
     public TextDocumentManager(LanguageServer server)
         => _server = server;
 
@@ -33,10 +37,13 @@ class TextDocumentManager
         return ReportDiagnosticsAsync(uri, template.Errors);
     }
 
+    public virtual ParsedTemplate Get(Uri uri)
+        => _openDocuments[uri];
+
     public void Close(Uri uri)
         => _openDocuments.Remove(uri);
 
-    private Task ReportDiagnosticsAsync(Uri uri, CompilerErrorCollection errors)
+    Task ReportDiagnosticsAsync(Uri uri, CompilerErrorCollection errors)
     {
         var diagnostics = new List<Diagnostic>(errors.Count);
         foreach (CompilerError error in errors)
