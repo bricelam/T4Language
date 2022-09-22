@@ -114,6 +114,7 @@
     <Compile Include="Server\Metadata\DirectiveMetadata.cs" />
     <Compile Include="Server\RequestContext.cs" />
     <Compile Include="Server\RequestContextFactory.cs" />
+    <Compile Include="Server\TextDocument.cs" />
     <Compile Include="Server\TextDocumentManager.cs" />
   </ItemGroup>
   <ItemGroup>

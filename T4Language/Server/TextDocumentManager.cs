@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.LanguageServer.Protocol;
 using Mono.TextTemplating;
@@ -10,8 +11,40 @@ namespace T4Language.Server;
 
 class TextDocumentManager
 {
+    static readonly HashSet<string> _snippets = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+    {
+        "assembly",
+        "import",
+        "include",
+        "parameter"
+    };
+
+    static readonly char[] _wordDelimiters = new[]
+    {
+      ' ',
+      '\t',
+      '.',
+      ',',
+      '(',
+      ')',
+      '{',
+      '}',
+      '"',
+      '\'',
+      ':',
+      '[',
+      ']',
+      ';',
+      '+',
+      '-',
+      '*',
+      '/',
+      '\r',
+      '\n'
+    };
+
     readonly LanguageServer _server;
-    readonly Dictionary<Uri, ParsedTemplate> _openDocuments = new Dictionary<Uri, ParsedTemplate>();
+    readonly Dictionary<Uri, TextDocument> _openDocuments = new Dictionary<Uri, TextDocument>();
 
     protected TextDocumentManager()
     {
@@ -20,7 +53,7 @@ class TextDocumentManager
     public TextDocumentManager(LanguageServer server)
         => _server = server;
 
-    public Task OpenOrChangeAsync(Uri uri, string content)
+    public async Task OpenOrChangeAsync(Uri uri, string content)
     {
         var template = new ParsedTemplate(uri.LocalPath);
         try
@@ -32,12 +65,20 @@ class TextDocumentManager
             template.LogError(ex.Message, ex.Location);
         }
 
-        _openDocuments[uri] = template;
+        await ReportDiagnosticsAsync(uri, template.Errors);
 
-        return ReportDiagnosticsAsync(uri, template.Errors);
+        _openDocuments[uri] = new TextDocument
+        {
+            ParsedTemplate = template,
+
+            // TODO: Separate text blocks from control blocks?
+            Words = new HashSet<string>(
+                content.Split(_wordDelimiters, StringSplitOptions.RemoveEmptyEntries)
+                    .Where(w => w.Length > 1 && !_snippets.Contains(w)))
+        };
     }
 
-    public virtual ParsedTemplate Get(Uri uri)
+    public virtual TextDocument Get(Uri uri)
         => _openDocuments[uri];
 
     public void Close(Uri uri)

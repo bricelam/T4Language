@@ -24,11 +24,11 @@ class CompletionHandler : IRequestHandler<CompletionParams, CompletionItem[], Re
         RequestContext context = null,
         CancellationToken cancellationToken = default)
     {
-        var template = _textDocumentManager.Get(request.TextDocument.Uri);
+        var document = _textDocumentManager.Get(request.TextDocument.Uri);
         var line = request.Position.Line + 1;
         var column = request.Position.Character + 1;
 
-        var segment = template.RawSegments.FirstOrDefault(
+        var segment = document.ParsedTemplate.RawSegments.FirstOrDefault(
             s => line >= s.StartLocation.Line
                 && line <= s.EndLocation.Line
                 && column >= s.StartLocation.Column
@@ -98,6 +98,7 @@ class CompletionHandler : IRequestHandler<CompletionParams, CompletionItem[], Re
                     .ToArray());
         }
 
-        return Task.FromResult<CompletionItem[]>(null);
+        // TODO: Filter? (Above too?)
+        return Task.FromResult(document.Words.Select(w => new CompletionItem { Label = w }).ToArray());
     }
 }
