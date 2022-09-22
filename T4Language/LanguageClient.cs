@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.LanguageServer.Client;
@@ -19,8 +21,21 @@ class LanguageClient : ILanguageClient
 {
     LanguageServer _server;
 
+    static LanguageClient()
+    {
+        // HACK: Don't try this at home.
+        var allowListField = Type.GetType("Microsoft.VisualStudio.LanguageServer.Client.ExperimentalSnippetSupport, Microsoft.VisualStudio.LanguageServer.Client.Implementation, Version=17.4.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")
+            ?.GetField("AllowList", BindingFlags.Static | BindingFlags.NonPublic);
+        if (allowListField is not null)
+        {
+            var allowList = ((string[])allowListField.GetValue(null)).ToList();
+            allowList.Add("T4 Language Server Client");
+            allowListField.SetValue(null, allowList.ToArray());
+        }
+    }
+
     public string Name
-        => "T4";
+        => "T4 Language Server Client";
 
     public IEnumerable<string> ConfigurationSections
         => null;

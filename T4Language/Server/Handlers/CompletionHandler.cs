@@ -61,9 +61,9 @@ class CompletionHandler : IRequestHandler<CompletionParams, CompletionItem[], Re
             foreach (var item in directive.AttributeInfo)
             {
                 if (line == item.Value.ValueLocation.Line
-                    && column >= item.Value.ValueLocation.Column
-                    // TODO: Is whitespace allowed?
-                    && column < item.Value.ValueLocation.Column + directive.Attributes[item.Key].Length + 3)
+                    // TODO: Move the `+ 2` logic into the parser
+                    && column >= item.Value.ValueLocation.Column + 2
+                    && column < item.Value.ValueLocation.Column + 2 + directive.Attributes[item.Key].Length)
                 {
                     var knownValues = knownAttributes
                         .Where(a => a.Name == item.Key)
@@ -71,7 +71,6 @@ class CompletionHandler : IRequestHandler<CompletionParams, CompletionItem[], Re
                         .FirstOrDefault()
                         ?? Array.Empty<string>();
 
-                    // TODO: How do you trim the =" and " ?
                     // TODO: Why do these replace the attribute name?
                     return Task.FromResult(
                         knownValues
@@ -92,13 +91,13 @@ class CompletionHandler : IRequestHandler<CompletionParams, CompletionItem[], Re
                         {
                             Kind = CompletionItemKind.Property,
                             Label = a.Name,
-                            Documentation = a.Documentation,
-
+                            InsertText = a.Name + @"=""$0""",
+                            InsertTextFormat = InsertTextFormat.Snippet,
+                            Documentation = a.Documentation
                         })
                     .ToArray());
         }
 
-        // TODO: Filter? (Above too?)
         return Task.FromResult(document.Words.Select(w => new CompletionItem { Label = w }).ToArray());
     }
 }
