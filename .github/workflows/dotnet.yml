@@ -1,0 +1,34 @@
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+    - name: Restore dependencies
+      run: MSBuild -t:Restore -p:Configuration=Release -m
+    - name: Build
+      run: MSBuild -p:Configuration=Release -m
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        path: 'T4Language\\bin\\*\\T4Language.vsix'
+    - name: Publish
+      if: ${{ github.repository_owner == 'bricelam' && github.event_name == 'push' }}
+      env:
+        APPVEYOR_REPO_PROVIDER: gitHub
+        APPVEYOR_REPO_NAME: ${{ github.repository }}
+        APPVEYOR_REPO_BRANCH: ${{ github.ref_name }}
+      run: |
+        (New-Object Net.WebClient).DownloadString("https://raw.github.com/madskristensen/ExtensionScripts/master/AppVeyor/vsix.ps1") | iex
+        Vsix-PublishToGallery T4Language\bin\Release\T4Language.vsix

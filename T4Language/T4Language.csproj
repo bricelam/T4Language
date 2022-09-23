@@ -108,6 +108,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Text.UI.Wpf">
       <Version>15.0.26201</Version>
     </PackageReference>
+    <PackageReference Include="Nerdbank.GitVersioning">
+      <PrivateAssets>all</PrivateAssets>
+      <Version>3.5.113</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
