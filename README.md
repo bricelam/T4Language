@@ -1,9 +1,13 @@
 T4 Language for Visual Studio
 =============================
 
+![build status](https://img.shields.io/github/workflow/status/bricelam/T4Language/.NET/main)
+
 Adds basic language support for .tt files.
 
 The latest version is available on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=bricelam.T4Language).
+
+CI builds are available on the [Open VSIX Gallery](https://www.vsixgallery.com/extension/97edd510-988c-473f-9858-ddd5223eab1d). Install [this extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.VSIXGallery-nightlybuilds) to get automatic updates.
 
 Screenshot
 ----------
