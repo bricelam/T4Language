@@ -23,7 +23,7 @@ public class TextDocumentCompletionHandlerTests
     [Fact]
     public Task Directive_attribute_value()
         => Test(
-            @"<#@ template debug=""|"" #>",
+            @"<#@ template debug=""t|"" #>",
             items => Assert.Contains(items, i => i.Label == "true"));
 
     async Task Test(string template, Action<CompletionItem[]> assert)
@@ -33,7 +33,7 @@ public class TextDocumentCompletionHandlerTests
         textDocumentManager.Open(
             uri,
             template.Replace("|", ""));
-        var handler = new TextDocumentCompletionHandler(textDocumentManager);
+        var handler = new TextDocumentCompletionHandler(textDocumentManager, new SnippetsManager());
 
         var result = await handler.HandleRequestAsync(
             new CompletionParams
