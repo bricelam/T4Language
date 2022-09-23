@@ -6,7 +6,7 @@ using Xunit;
 
 namespace T4Language.Server.Handlers;
 
-public class CompletionHandlerTests
+public class TextDocumentCompletionHandlerTests
 {
     [Fact]
     public Task Directive_name()
@@ -33,7 +33,7 @@ public class CompletionHandlerTests
         textDocumentManager.Open(
             uri,
             template.Replace("|", ""));
-        var handler = new CompletionHandler(textDocumentManager);
+        var handler = new TextDocumentCompletionHandler(textDocumentManager);
 
         var result = await handler.HandleRequestAsync(
             new CompletionParams

@@ -6,11 +6,9 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.LanguageServer.Client;
-using Microsoft.VisualStudio.LanguageServer.Protocol;
 using Microsoft.VisualStudio.Threading;
 using Microsoft.VisualStudio.Utilities;
 using Nerdbank.Streams;
-using StreamJsonRpc;
 using T4Language.Server;
 
 namespace T4Language;
@@ -23,7 +21,7 @@ class LanguageClient : ILanguageClient
 
     static LanguageClient()
     {
-        // HACK: Don't try this at home.
+        // HACK: Don't try this at home
         var allowListField = Type.GetType("Microsoft.VisualStudio.LanguageServer.Client.ExperimentalSnippetSupport, Microsoft.VisualStudio.LanguageServer.Client.Implementation, Version=17.4.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")
             ?.GetField("AllowList", BindingFlags.Static | BindingFlags.NonPublic);
         if (allowListField is not null)
@@ -58,12 +56,7 @@ class LanguageClient : ILanguageClient
 
         var (clientStream, serverStream) = FullDuplexStream.CreatePair();
 
-        var formatter = new JsonMessageFormatter();
-        formatter.JsonSerializer.AddVSExtensionConverters();
-        var jsonRpc = new JsonRpc(new HeaderDelimitedMessageHandler(serverStream, serverStream, formatter));
-
-        _server = new LanguageServer(jsonRpc, new LspLogger());
-        jsonRpc.StartListening();
+        _server = LanguageServer.Create(serverStream, serverStream, new LspLogger());
 
         return new Connection(clientStream, clientStream);
     }

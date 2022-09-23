@@ -10,11 +10,11 @@ using T4Language.Server.Metadata;
 namespace T4Language.Server.Handlers;
 
 [LanguageServerEndpoint(Methods.TextDocumentCompletionName)]
-class CompletionHandler : IRequestHandler<CompletionParams, CompletionItem[], RequestContext>
+class TextDocumentCompletionHandler : IRequestHandler<CompletionParams, CompletionItem[], RequestContext>
 {
     readonly TextDocumentManager _textDocumentManager;
 
-    public CompletionHandler(TextDocumentManager textDocumentManager)
+    public TextDocumentCompletionHandler(TextDocumentManager textDocumentManager)
         => _textDocumentManager = textDocumentManager;
 
     public bool MutatesSolutionState => false;
@@ -61,7 +61,7 @@ class CompletionHandler : IRequestHandler<CompletionParams, CompletionItem[], Re
             foreach (var item in directive.AttributeInfo)
             {
                 if (line == item.Value.ValueLocation.Line
-                    // TODO: Move the `+ 2` logic into the parser
+                    // TODO: Handle whitespace (in the Parser)
                     && column >= item.Value.ValueLocation.Column + 2
                     && column < item.Value.ValueLocation.Column + 2 + directive.Attributes[item.Key].Length)
                 {

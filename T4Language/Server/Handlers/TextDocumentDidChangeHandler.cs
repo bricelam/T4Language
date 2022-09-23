@@ -6,11 +6,11 @@ using Microsoft.VisualStudio.LanguageServer.Protocol;
 namespace T4Language.Server.Handlers;
 
 [LanguageServerEndpoint(Methods.TextDocumentDidChangeName)]
-class DidChangeTextDocumentHandler : INotificationHandler<DidChangeTextDocumentParams, RequestContext>
+class TextDocumentDidChangeHandler : INotificationHandler<DidChangeTextDocumentParams, RequestContext>
 {
     readonly TextDocumentManager _textDocumentManager;
 
-    public DidChangeTextDocumentHandler(TextDocumentManager textDocumentManager)
+    public TextDocumentDidChangeHandler(TextDocumentManager textDocumentManager)
         => _textDocumentManager = textDocumentManager;
 
     public bool MutatesSolutionState => true;

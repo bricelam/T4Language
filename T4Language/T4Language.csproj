@@ -102,11 +102,11 @@
     <Compile Include="Server\CapabilitiesManager.cs" />
     <Compile Include="Classifications.cs" />
     <Compile Include="ContentTypes.cs" />
-    <Compile Include="Server\Handlers\DidChangeTextDocumentHandler.cs" />
-    <Compile Include="Server\Handlers\DidCloseTextDocumentHandler.cs" />
-    <Compile Include="Server\Handlers\DidOpenTextDocumentHandler.cs" />
+    <Compile Include="Server\Handlers\TextDocumentDidChangeHandler.cs" />
+    <Compile Include="Server\Handlers\TextDocumentDidCloseHandler.cs" />
+    <Compile Include="Server\Handlers\TextDocumentDidOpenHandler.cs" />
     <Compile Include="LanguageClient.cs" />
-    <Compile Include="Server\Handlers\CompletionHandler.cs" />
+    <Compile Include="Server\Handlers\TextDocumentCompletionHandler.cs" />
     <Compile Include="Server\LanguageServer.cs" />
     <Compile Include="Server\LspLogger.cs" />
     <Compile Include="Server\LspServices.cs" />

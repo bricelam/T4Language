@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CommonLanguageServerProtocol.Framework;
 using Microsoft.CommonLanguageServerProtocol.Framework.Handlers;
@@ -13,11 +14,21 @@ class LanguageServer : AbstractLanguageServer<RequestContext>
 {
     readonly JsonRpc _jsonRpc;
 
-    public LanguageServer(JsonRpc jsonRpc, ILspLogger logger)
+    protected LanguageServer(JsonRpc jsonRpc, ILspLogger logger)
         : base(jsonRpc, logger)
     {
         _jsonRpc = jsonRpc;
         Initialize();
+        _jsonRpc.StartListening();
+    }
+
+    public static LanguageServer Create(Stream writer, Stream reader, ILspLogger logger)
+    {
+        var formatter = new JsonMessageFormatter();
+        formatter.JsonSerializer.AddVSExtensionConverters();
+        var jsonRpc = new JsonRpc(new HeaderDelimitedMessageHandler(writer, reader, formatter));
+
+        return new LanguageServer(jsonRpc, logger);
     }
 
     protected override ILspServices ConstructLspServices()
@@ -27,10 +38,10 @@ class LanguageServer : AbstractLanguageServer<RequestContext>
                 .AddSingleton<IMethodHandler, InitializedHandler<InitializedParams, RequestContext>>()
                 .AddSingleton<IMethodHandler, ShutdownHandler<RequestContext>>()
                 .AddSingleton<IMethodHandler, ExitHandler<RequestContext>>()
-                .AddSingleton<IMethodHandler, DidOpenTextDocumentHandler>()
-                .AddSingleton<IMethodHandler, DidChangeTextDocumentHandler>()
-                .AddSingleton<IMethodHandler, DidCloseTextDocumentHandler>()
-                .AddSingleton<IMethodHandler, CompletionHandler>()
+                .AddSingleton<IMethodHandler, TextDocumentDidOpenHandler>()
+                .AddSingleton<IMethodHandler, TextDocumentDidChangeHandler>()
+                .AddSingleton<IMethodHandler, TextDocumentDidCloseHandler>()
+                .AddSingleton<IMethodHandler, TextDocumentCompletionHandler>()
                 .AddSingleton(_logger)
                 .AddSingleton<IRequestContextFactory<RequestContext>, RequestContextFactory>()
                 .AddSingleton<IInitializeManager<InitializeParams, InitializeResult>, CapabilitiesManager>()
