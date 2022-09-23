@@ -40,11 +40,9 @@ class TextDocumentCompletionHandler : IRequestHandler<CompletionParams, Completi
                 || (line == s.EndLocation.Line && column < s.EndLocation.Column)));
         if (segment is Directive directive)
         {
-            // TODO: Handle empty directives
             if (line == directive.StartLocation.Line
                 && column <= directive.StartLocation.Column + directive.Name.Length)
             {
-                // TODO: Why to these replace the end delimiter?
                 return Task.FromResult(
                     DirectiveMetadata.KnownDirectives
                         .Select(
@@ -76,7 +74,6 @@ class TextDocumentCompletionHandler : IRequestHandler<CompletionParams, Completi
                         .FirstOrDefault()
                         ?? Array.Empty<string>();
 
-                    // TODO: Why do these replace the attribute name?
                     return Task.FromResult(
                         knownValues
                             .Select(

@@ -49,7 +49,6 @@ class TextDocumentManager
         var parsedTemplate = new ParsedTemplate(uri.LocalPath);
         try
         {
-            // TODO: Parse with includes and report those errors too
             parsedTemplate.ParseWithoutIncludes(new Tokeniser(uri.LocalPath, content));
         }
         catch (ParserException ex)
