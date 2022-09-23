@@ -48,7 +48,8 @@ class LanguageServer : AbstractLanguageServer<RequestContext>
                 .AddSingleton<IInitializeManager<InitializeParams, InitializeResult>, CapabilitiesManager>()
                 .AddSingleton<ILifeCycleManager>(this)
                 .AddSingleton(this)
-                .AddSingleton<TextDocumentManager>());
+                .AddSingleton<TextDocumentManager>()
+                .AddSingleton<SnippetsManager>());
 
     public Task ExecuteAsync<TParams>(LspNotification<TParams> method, TParams argument)
         => _jsonRpc.NotifyWithParameterObjectAsync(method.Name, argument);

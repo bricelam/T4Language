@@ -115,6 +115,7 @@
     <Compile Include="Server\Metadata\DirectiveMetadata.cs" />
     <Compile Include="Server\RequestContext.cs" />
     <Compile Include="Server\RequestContextFactory.cs" />
+    <Compile Include="Server\SnippetManager.cs" />
     <Compile Include="Server\TextDocument.cs" />
     <Compile Include="Server\TextDocumentManager.cs" />
   </ItemGroup>
@@ -136,6 +137,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.TextMate.Snippets.Translator">
+      <HintPath>$(DevEnvDir)CommonExtensions\Microsoft\TextMate\Microsoft.VisualStudio.TextMate.Snippets.Translator.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

@@ -11,14 +11,6 @@ namespace T4Language.Server;
 
 class TextDocumentManager
 {
-    static readonly HashSet<string> _snippets = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-    {
-        "assembly",
-        "import",
-        "include",
-        "parameter"
-    };
-
     static readonly char[] _wordDelimiters = new[]
     {
       ' ',
@@ -74,7 +66,7 @@ class TextDocumentManager
             // TODO: Separate text blocks from control blocks?
             Words = new HashSet<string>(
                 content.Split(_wordDelimiters, StringSplitOptions.RemoveEmptyEntries)
-                    .Where(w => w.Length > 1 && !_snippets.Contains(w)))
+                    .Where(w => w.Length > 1))
         };
     }
 
