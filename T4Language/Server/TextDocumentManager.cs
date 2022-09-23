@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.LanguageServer.Protocol;
@@ -30,9 +31,7 @@ class TextDocumentManager
       '+',
       '-',
       '*',
-      '/',
-      '\r',
-      '\n'
+      '/'
     };
 
     readonly LanguageServer _server;
@@ -47,26 +46,39 @@ class TextDocumentManager
 
     public async Task OpenOrChangeAsync(Uri uri, string content)
     {
-        var template = new ParsedTemplate(uri.LocalPath);
+        var parsedTemplate = new ParsedTemplate(uri.LocalPath);
         try
         {
-            template.ParseWithoutIncludes(new Tokeniser(uri.LocalPath, content));
+            // TODO: Parse with includes and report those errors too
+            parsedTemplate.ParseWithoutIncludes(new Tokeniser(uri.LocalPath, content));
         }
         catch (ParserException ex)
         {
-            template.LogError(ex.Message, ex.Location);
+            parsedTemplate.LogError(ex.Message, ex.Location);
         }
 
-        await ReportDiagnosticsAsync(uri, template.Errors);
+        await ReportDiagnosticsAsync(uri, parsedTemplate.Errors);
+
+        var lines = new List<string>();
+        var words = new HashSet<string>();
+
+        string line;
+        using var reader = new StringReader(content);
+        while ((line = reader.ReadLine()) is not null)
+        {
+            lines.Add(line);
+
+            foreach (var word in content.Split(_wordDelimiters).Where(w => w.Length > 1))
+            {
+                words.Add(word);
+            }
+        }
 
         _openDocuments[uri] = new TextDocument
         {
-            ParsedTemplate = template,
-
-            // TODO: Separate text blocks from control blocks?
-            Words = new HashSet<string>(
-                content.Split(_wordDelimiters, StringSplitOptions.RemoveEmptyEntries)
-                    .Where(w => w.Length > 1))
+            ParsedTemplate = parsedTemplate,
+            Lines = lines,
+            Words = words
         };
     }
 

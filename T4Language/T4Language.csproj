@@ -107,6 +107,7 @@
     <Compile Include="Server\Handlers\TextDocumentDidOpenHandler.cs" />
     <Compile Include="LanguageClient.cs" />
     <Compile Include="Server\Handlers\TextDocumentCompletionHandler.cs" />
+    <Compile Include="Server\Handlers\TextDocumentDocumentHighlightHandler.cs" />
     <Compile Include="Server\Handlers\TextDocumentHoverHandler.cs" />
     <Compile Include="Server\LanguageServer.cs" />
     <Compile Include="Server\LspLogger.cs" />

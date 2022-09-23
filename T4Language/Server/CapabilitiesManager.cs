@@ -18,6 +18,7 @@ class CapabilitiesManager : IInitializeManager<InitializeParams, InitializeResul
         {
             Capabilities = new ServerCapabilities
             {
+                DocumentHighlightProvider = true,
                 HoverProvider = true,
                 CompletionProvider = new CompletionOptions(),
                 TextDocumentSync = new TextDocumentSyncOptions

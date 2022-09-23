@@ -43,6 +43,7 @@ class LanguageServer : AbstractLanguageServer<RequestContext>
                 .AddSingleton<IMethodHandler, TextDocumentDidCloseHandler>()
                 .AddSingleton<IMethodHandler, TextDocumentCompletionHandler>()
                 .AddSingleton<IMethodHandler, TextDocumentHoverHandler>()
+                .AddSingleton<IMethodHandler, TextDocumentDocumentHighlightHandler>()
                 .AddSingleton(_logger)
                 .AddSingleton<IRequestContextFactory<RequestContext>, RequestContextFactory>()
                 .AddSingleton<IInitializeManager<InitializeParams, InitializeResult>, CapabilitiesManager>()

@@ -11,19 +11,19 @@ class TestTextDocumentManager : TextDocumentManager
     public void Open(Uri uri, string content)
     {
         // TODO: DRY
-        var template = new ParsedTemplate(uri.LocalPath);
+        var parsedTemplate = new ParsedTemplate(uri.LocalPath);
         try
         {
-            template.ParseWithoutIncludes(new Tokeniser(uri.LocalPath, content));
+            parsedTemplate.ParseWithoutIncludes(new Tokeniser(uri.LocalPath, content));
         }
         catch (ParserException ex)
         {
-            template.LogError(ex.Message, ex.Location);
+            parsedTemplate.LogError(ex.Message, ex.Location);
         }
 
         _openDocuments[uri] = new TextDocument
         {
-            ParsedTemplate = template,
+            ParsedTemplate = parsedTemplate,
             Words = Array.Empty<string>()
         };
     }
