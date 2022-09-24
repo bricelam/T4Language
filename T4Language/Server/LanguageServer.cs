@@ -10,7 +10,7 @@ using T4Language.Server.Handlers;
 
 namespace T4Language.Server;
 
-class LanguageServer : AbstractLanguageServer<RequestContext>
+class LanguageServer : AbstractLanguageServer<RequestContext>, IClientFacade
 {
     readonly JsonRpc _jsonRpc;
 
@@ -48,6 +48,7 @@ class LanguageServer : AbstractLanguageServer<RequestContext>
                 .AddSingleton<IRequestContextFactory<RequestContext>, RequestContextFactory>()
                 .AddSingleton<IInitializeManager<InitializeParams, InitializeResult>, CapabilitiesManager>()
                 .AddSingleton<ILifeCycleManager>(this)
+                .AddSingleton<IClientFacade>(this)
                 .AddSingleton(this)
                 .AddSingleton<TextDocumentManager>()
                 .AddSingleton<SnippetsManager>());

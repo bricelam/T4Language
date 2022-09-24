@@ -29,8 +29,8 @@ public class TextDocumentCompletionHandlerTests
     async Task Test(string template, Action<CompletionItem[]> assert)
     {
         var uri = new Uri("file:///Test.tt");
-        var textDocumentManager = new TestTextDocumentManager();
-        textDocumentManager.Open(
+        var textDocumentManager = new TextDocumentManager(new TestClientFacade());
+        await textDocumentManager.OpenOrChangeAsync(
             uri,
             template.Replace("|", ""));
         var handler = new TextDocumentCompletionHandler(textDocumentManager, new SnippetsManager());

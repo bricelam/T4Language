@@ -34,15 +34,11 @@ class TextDocumentManager
       '/'
     };
 
-    readonly LanguageServer _server;
+    readonly IClientFacade _clientFacade;
     readonly Dictionary<Uri, TextDocument> _openDocuments = new Dictionary<Uri, TextDocument>();
 
-    protected TextDocumentManager()
-    {
-    }
-
-    public TextDocumentManager(LanguageServer server)
-        => _server = server;
+    public TextDocumentManager(IClientFacade clientFacade)
+        => _clientFacade = clientFacade;
 
     public async Task OpenOrChangeAsync(Uri uri, string content)
     {
@@ -81,7 +77,7 @@ class TextDocumentManager
         };
     }
 
-    public virtual TextDocument Get(Uri uri)
+    public TextDocument Get(Uri uri)
         => _openDocuments[uri];
 
     public void Close(Uri uri)
@@ -116,7 +112,7 @@ class TextDocumentManager
                 });
         }
 
-        return _server.ExecuteAsync(
+        return _clientFacade.ExecuteAsync(
             Methods.TextDocumentPublishDiagnostics,
             new PublishDiagnosticParams
             {
