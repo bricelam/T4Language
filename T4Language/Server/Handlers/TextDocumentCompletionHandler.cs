@@ -40,6 +40,23 @@ class TextDocumentCompletionHandler : IRequestHandler<CompletionParams, Completi
                 || (line == s.EndLocation.Line && column < s.EndLocation.Column)));
         if (segment is Directive directive)
         {
+            // TODO: DRY (TextDocumentDocumentHighlightHandler)
+            var wordLine = document.Lines[request.Position.Line];
+
+            var wordStart = request.Position.Character;
+            while (wordStart - 1 >= 0
+                && char.IsLetter(wordLine[wordStart - 1]))
+            {
+                wordStart--;
+            }
+
+            var wordEnd = request.Position.Character;
+            while (wordEnd < wordLine.Length
+                && char.IsLetter(wordLine[wordEnd]))
+            {
+                wordEnd++;
+            }
+
             if (line == directive.StartLocation.Line
                 && column <= directive.StartLocation.Column + directive.Name.Length)
             {
@@ -50,13 +67,22 @@ class TextDocumentCompletionHandler : IRequestHandler<CompletionParams, Completi
                             {
                                 Kind = CompletionItemKind.Element,
                                 Label = d.Name,
-                                Documentation = d.Documentation
+                                Documentation = d.Documentation,
+                                TextEdit = new TextEdit
+                                {
+                                    NewText = d.Name,
+                                    Range = new Range
+                                    {
+                                        Start = new Position(request.Position.Line, wordStart),
+                                        End = new Position(request.Position.Line, wordEnd)
+                                    }
+                                }
                             })
                         .ToArray());
             }
 
             var knownAttributes = DirectiveMetadata.KnownDirectives
-                .Where(d => d.Name == directive.Name)
+                .Where(d => string.Equals(d.Name, directive.Name, StringComparison.OrdinalIgnoreCase))
                 .Select(d => d.KnownAttributes)
                 .FirstOrDefault()
                 ?? AttributeMetadata.KnownAttributes;
@@ -69,7 +95,7 @@ class TextDocumentCompletionHandler : IRequestHandler<CompletionParams, Completi
                     && column < item.Value.ValueLocation.Column + 2 + directive.Attributes[item.Key].Length)
                 {
                     var knownValues = knownAttributes
-                        .Where(a => a.Name == item.Key)
+                        .Where(a => string.Equals(a.Name, item.Key, StringComparison.OrdinalIgnoreCase))
                         .Select(a => a.KnownValues)
                         .FirstOrDefault()
                         ?? Array.Empty<string>();
@@ -80,7 +106,16 @@ class TextDocumentCompletionHandler : IRequestHandler<CompletionParams, Completi
                                 v => new CompletionItem
                                 {
                                     Kind = CompletionItemKind.Value,
-                                    Label = v
+                                    Label = v,
+                                    TextEdit = new TextEdit
+                                    {
+                                        NewText = v,
+                                        Range = new Range
+                                        {
+                                            Start = new Position(request.Position.Line, wordStart),
+                                            End = new Position(request.Position.Line, wordEnd)
+                                        }
+                                    }
                                 })
                             .ToArray());
                 }
@@ -93,9 +128,17 @@ class TextDocumentCompletionHandler : IRequestHandler<CompletionParams, Completi
                         {
                             Kind = CompletionItemKind.Property,
                             Label = a.Name,
-                            InsertText = a.Name + @"=""$0""",
                             InsertTextFormat = InsertTextFormat.Snippet,
-                            Documentation = a.Documentation
+                            Documentation = a.Documentation,
+                            TextEdit = new TextEdit
+                            {
+                                NewText = a.Name + @"=""$0""",
+                                Range = new Range
+                                {
+                                    Start = new Position(request.Position.Line, wordStart),
+                                    End = new Position(request.Position.Line, wordEnd)
+                                }
+                            }
                         })
                     .ToArray());
         }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CommonLanguageServerProtocol.Framework;
@@ -29,10 +30,10 @@ class TextDocumentHoverHandler : IRequestHandler<TextDocumentPositionParams, Hov
         var column = request.Position.Character + 1;
 
         var segment = document.ParsedTemplate.RawSegments.FirstOrDefault(
-            s => line >= s.StartLocation.Line
-                && line <= s.EndLocation.Line
-                && column >= s.StartLocation.Column
-                && column < s.EndLocation.Column);
+            s => (line > s.StartLocation.Line && line < s.EndLocation.Line)
+                || ((line == s.StartLocation.Line && column >= s.StartLocation.Column)
+                    && ((s.StartLocation.Line != s.EndLocation.Line) || column < s.EndLocation.Column)
+                || (line == s.EndLocation.Line && column < s.EndLocation.Column)));
         if (segment is Directive directive)
         {
             if (line == directive.StartLocation.Line
@@ -40,7 +41,7 @@ class TextDocumentHoverHandler : IRequestHandler<TextDocumentPositionParams, Hov
             {
                 return Task.FromResult(
                     DirectiveMetadata.KnownDirectives
-                        .Where(d => d.Name == directive.Name)
+                        .Where(d => string.Equals(d.Name, directive.Name, StringComparison.OrdinalIgnoreCase))
                         .Select(
                             d => new Hover
                             {
@@ -50,7 +51,7 @@ class TextDocumentHoverHandler : IRequestHandler<TextDocumentPositionParams, Hov
             }
 
             var knownAttributes = DirectiveMetadata.KnownDirectives
-                .Where(d => d.Name == directive.Name)
+                .Where(d => string.Equals(d.Name, directive.Name, StringComparison.OrdinalIgnoreCase))
                 .Select(d => d.KnownAttributes)
                 .FirstOrDefault()
                 ?? AttributeMetadata.KnownAttributes;
@@ -63,7 +64,7 @@ class TextDocumentHoverHandler : IRequestHandler<TextDocumentPositionParams, Hov
                 {
                     return Task.FromResult(
                         knownAttributes
-                            .Where(a => a.Name == item.Key)
+                            .Where(a => string.Equals(a.Name, item.Key, System.StringComparison.OrdinalIgnoreCase))
                             .Select(
                                 a => new Hover
                                 {

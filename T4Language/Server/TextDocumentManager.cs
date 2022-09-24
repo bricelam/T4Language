@@ -67,7 +67,7 @@ class TextDocumentManager
         {
             lines.Add(line);
 
-            foreach (var word in content.Split(_wordDelimiters).Where(w => w.Length > 1))
+            foreach (var word in line.Split(_wordDelimiters).Where(w => w.Length > 1))
             {
                 words.Add(word);
             }

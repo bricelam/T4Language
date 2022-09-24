@@ -20,7 +20,9 @@ class CapabilitiesManager : IInitializeManager<InitializeParams, InitializeResul
             {
                 DocumentHighlightProvider = true,
                 HoverProvider = true,
-                CompletionProvider = new CompletionOptions(),
+                CompletionProvider = new CompletionOptions
+                {
+                },
                 TextDocumentSync = new TextDocumentSyncOptions
                 {
                     OpenClose = true,
