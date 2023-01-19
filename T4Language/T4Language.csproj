@@ -131,6 +131,9 @@
     <PackageReference Include="Microsoft.VisualStudio.LanguageServer.Client">
       <Version>17.3.3101</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.CommonLanguageServerProtocol.Framework">
+      <Version>4.4.0-3.22463.10</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.LanguageServer.Protocol.Extensions">
       <Version>17.2.8</Version>
     </PackageReference>
@@ -151,10 +154,6 @@
     <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.CommonLanguageServerProtocol.Framework\Microsoft.CommonLanguageServerProtocol.Framework.csproj">
-      <Project>{08c47e5b-762e-45d9-8a43-128450708b4d}</Project>
-      <Name>Microsoft.CommonLanguageServerProtocol.Framework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Mono.TextTemplating\Mono.TextTemplating.csproj">
       <Project>{1dbc32ee-ac7d-4c25-8493-42d2d6625ba5}</Project>
       <Name>Mono.TextTemplating</Name>
