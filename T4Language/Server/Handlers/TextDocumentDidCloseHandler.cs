@@ -17,8 +17,8 @@ class TextDocumentDidCloseHandler : INotificationHandler<DidCloseTextDocumentPar
 
     public Task HandleNotificationAsync(
         DidCloseTextDocumentParams request,
-        RequestContext requestContext,
-        CancellationToken cancellationToken)
+        RequestContext context,
+        CancellationToken cancellationToken = default)
     {
         _textDocumentManager.Close(request.TextDocument.Uri);
 

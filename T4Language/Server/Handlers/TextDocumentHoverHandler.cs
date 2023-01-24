@@ -13,23 +13,17 @@ namespace T4Language.Server.Handlers;
 [LanguageServerEndpoint(Methods.TextDocumentHoverName)]
 class TextDocumentHoverHandler : IRequestHandler<TextDocumentPositionParams, Hover, RequestContext>
 {
-    readonly TextDocumentManager _textDocumentManager;
-
-    public TextDocumentHoverHandler(TextDocumentManager textDocumentManager)
-        => _textDocumentManager = textDocumentManager;
-
     public bool MutatesSolutionState => false;
 
     public Task<Hover> HandleRequestAsync(
         TextDocumentPositionParams request,
         RequestContext context,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
-        var document = _textDocumentManager.Get(request.TextDocument.Uri);
         var line = request.Position.Line + 1;
         var column = request.Position.Character + 1;
 
-        var segment = document.ParsedTemplate.RawSegments.FirstOrDefault(
+        var segment = context.TextDocument.ParsedTemplate.RawSegments.FirstOrDefault(
             s => (line > s.StartLocation.Line && line < s.EndLocation.Line)
                 || ((line == s.StartLocation.Line && column >= s.StartLocation.Column)
                     && ((s.StartLocation.Line != s.EndLocation.Line) || column < s.EndLocation.Column)

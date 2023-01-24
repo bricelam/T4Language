@@ -17,7 +17,7 @@ class TextDocumentDidChangeHandler : INotificationHandler<DidChangeTextDocumentP
 
     public Task HandleNotificationAsync(
         DidChangeTextDocumentParams request,
-        RequestContext requestContext,
-        CancellationToken cancellationToken)
+        RequestContext context,
+        CancellationToken cancellationToken = default)
         => _textDocumentManager.OpenOrChangeAsync(request.TextDocument.Uri, request.ContentChanges[0].Text);
 }

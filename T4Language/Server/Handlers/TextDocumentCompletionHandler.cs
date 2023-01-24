@@ -12,12 +12,10 @@ namespace T4Language.Server.Handlers;
 [LanguageServerEndpoint(Methods.TextDocumentCompletionName)]
 class TextDocumentCompletionHandler : IRequestHandler<CompletionParams, CompletionItem[], RequestContext>
 {
-    readonly TextDocumentManager _textDocumentManager;
     readonly SnippetsManager _snippetsManager;
 
-    public TextDocumentCompletionHandler(TextDocumentManager textDocumentManager, SnippetsManager snippetsManager)
+    public TextDocumentCompletionHandler(SnippetsManager snippetsManager)
     {
-        _textDocumentManager = textDocumentManager;
         _snippetsManager = snippetsManager;
     }
 
@@ -25,15 +23,14 @@ class TextDocumentCompletionHandler : IRequestHandler<CompletionParams, Completi
 
     public Task<CompletionItem[]> HandleRequestAsync(
         CompletionParams request,
-        RequestContext context = null,
+        RequestContext context,
         CancellationToken cancellationToken = default)
     {
-        var document = _textDocumentManager.Get(request.TextDocument.Uri);
         var line = request.Position.Line + 1;
         var column = request.Position.Character + 1;
 
         // TODO: Can this be simplified?
-        var segment = document.ParsedTemplate.RawSegments.FirstOrDefault(
+        var segment = context.TextDocument.ParsedTemplate.RawSegments.FirstOrDefault(
             s => (line > s.StartLocation.Line && line < s.EndLocation.Line)
                 || ((line == s.StartLocation.Line && column >= s.StartLocation.Column)
                     && ((s.StartLocation.Line != s.EndLocation.Line) || column < s.EndLocation.Column)
@@ -41,7 +38,7 @@ class TextDocumentCompletionHandler : IRequestHandler<CompletionParams, Completi
         if (segment is Directive directive)
         {
             // TODO: DRY (TextDocumentDocumentHighlightHandler)
-            var wordLine = document.Lines[request.Position.Line];
+            var wordLine = context.TextDocument.Lines[request.Position.Line];
 
             var wordStart = request.Position.Character;
             while (wordStart - 1 >= 0
@@ -157,12 +154,12 @@ class TextDocumentCompletionHandler : IRequestHandler<CompletionParams, Completi
                                 InsertText = s.OriginalSnippetCode,
                                 InsertTextFormat = InsertTextFormat.Snippet
                             }),
-                    document.Words
+                    context.TextDocument.Words
                         .Where(w => !_snippetsManager.Snippets.Any(s => s.Shortcut == w))
                         .Select(w => new CompletionItem { Label = w }))
                     .ToArray());
         }
 
-        return Task.FromResult(document.Words.Select(w => new CompletionItem { Label = w }).ToArray());
+        return Task.FromResult(context.TextDocument.Words.Select(w => new CompletionItem { Label = w }).ToArray());
     }
 }

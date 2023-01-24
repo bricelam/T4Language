@@ -17,7 +17,7 @@ class TextDocumentDidOpenHandler : INotificationHandler<DidOpenTextDocumentParam
 
     public Task HandleNotificationAsync(
         DidOpenTextDocumentParams request,
-        RequestContext requestContext,
-        CancellationToken cancellationToken)
+        RequestContext context,
+        CancellationToken cancellationToken = default)
         => _textDocumentManager.OpenOrChangeAsync(request.TextDocument.Uri, request.TextDocument.Text);
 }

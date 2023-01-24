@@ -2,4 +2,5 @@
 
 class RequestContext
 {
+    public TextDocument TextDocument { get; set; }
 }

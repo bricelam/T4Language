@@ -9,21 +9,14 @@ namespace T4Language.Server.Handlers;
 [LanguageServerEndpoint(Methods.TextDocumentDocumentHighlightName)]
 class TextDocumentDocumentHighlightHandler : IRequestHandler<DocumentHighlightParams, DocumentHighlight[], RequestContext>
 {
-    readonly TextDocumentManager _textDocumentManager;
-
-    public TextDocumentDocumentHighlightHandler(TextDocumentManager textDocumentManager)
-        => _textDocumentManager = textDocumentManager;
-
     public bool MutatesSolutionState => false;
 
     public Task<DocumentHighlight[]> HandleRequestAsync(
         DocumentHighlightParams request,
         RequestContext context,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
-        var document = _textDocumentManager.Get(request.TextDocument.Uri);
-
-        var wordLine = document.Lines[request.Position.Line];
+        var wordLine = context.TextDocument.Lines[request.Position.Line];
         if (!IsIdentifierChar(wordLine[request.Position.Character]))
             return Task.FromResult<DocumentHighlight[]>(null);
 
@@ -54,9 +47,9 @@ class TextDocumentDocumentHighlightHandler : IRequestHandler<DocumentHighlightPa
                 }
             });
 
-        for (var line = 0; line < document.Lines.Count; line++)
+        for (var line = 0; line < context.TextDocument.Lines.Count; line++)
         {
-            var currentLine = document.Lines[line];
+            var currentLine = context.TextDocument.Lines[line];
             var currentIndex = 0;
             while (currentIndex < currentLine.Length)
             {
