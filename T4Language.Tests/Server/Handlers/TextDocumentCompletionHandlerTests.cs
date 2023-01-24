@@ -33,7 +33,11 @@ public class TextDocumentCompletionHandlerTests
         await textDocumentManager.OpenOrChangeAsync(
             uri,
             template.Replace("|", ""));
-        var handler = new TextDocumentCompletionHandler(textDocumentManager, new SnippetsManager());
+        var handler = new TextDocumentCompletionHandler(new SnippetsManager());
+        var context = new RequestContext
+        {
+            TextDocument = textDocumentManager.Get(uri)
+        };
 
         var result = await handler.HandleRequestAsync(
             new CompletionParams
@@ -43,7 +47,8 @@ public class TextDocumentCompletionHandlerTests
                     Uri = uri
                 },
                 Position = new Position(0, template.IndexOf("|"))
-            });
+            },
+            context);
 
         assert(result);
     }

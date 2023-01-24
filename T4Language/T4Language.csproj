@@ -132,7 +132,7 @@
       <Version>17.3.3101</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.CommonLanguageServerProtocol.Framework">
-      <Version>4.4.0-3.22463.10</Version>
+      <Version>4.6.0-1.23073.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.LanguageServer.Protocol.Extensions">
       <Version>17.2.8</Version>
