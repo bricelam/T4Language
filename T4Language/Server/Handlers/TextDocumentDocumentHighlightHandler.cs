@@ -16,8 +16,12 @@ class TextDocumentDocumentHighlightHandler : IRequestHandler<DocumentHighlightPa
         RequestContext context,
         CancellationToken cancellationToken = default)
     {
+        if (request.Position.Line >= context.TextDocument.Lines.Count)
+            return Task.FromResult<DocumentHighlight[]>(null);
+
         var wordLine = context.TextDocument.Lines[request.Position.Line];
-        if (!IsIdentifierChar(wordLine[request.Position.Character]))
+        if (request.Position.Character >= wordLine.Length
+            || !IsIdentifierChar(wordLine[request.Position.Character]))
             return Task.FromResult<DocumentHighlight[]>(null);
 
         var highlights = new List<DocumentHighlight>();
@@ -37,15 +41,6 @@ class TextDocumentDocumentHighlightHandler : IRequestHandler<DocumentHighlightPa
         }
 
         var word = wordLine.Substring(wordStart, wordEnd - wordStart);
-        highlights.Add(
-            new DocumentHighlight
-            {
-                Range = new Range
-                {
-                    Start = new Position(request.Position.Line, wordStart),
-                    End = new Position(request.Position.Line, wordEnd)
-                }
-            });
 
         for (var line = 0; line < context.TextDocument.Lines.Count; line++)
         {

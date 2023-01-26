@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net4.7.2</TargetFramework>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>11.0</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>T4Language</RootNamespace>
   </PropertyGroup>
@@ -18,6 +18,21 @@
 
   <ItemGroup>
     <ProjectReference Include="..\T4Language\T4Language.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\T4Language\Snippets\assembly.tmSnippet" Link="Snippets\assembly.tmSnippet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\T4Language\Snippets\import.tmSnippet" Link="Snippets\import.tmSnippet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\T4Language\Snippets\include.tmSnippet" Link="Snippets\include.tmSnippet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\T4Language\Snippets\parameter.tmSnippet" Link="Snippets\parameter.tmSnippet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -26,6 +26,12 @@ public class TextDocumentCompletionHandlerTests
             @"<#@ template debug=""t|"" #>",
             items => Assert.Contains(items, i => i.Label == "true"));
 
+    [Fact]
+    public Task Snippet()
+        => Test(
+            "i|",
+            items => Assert.Contains(items, i => i.Label == "import"));
+
     async Task Test(string template, Action<CompletionItem[]> assert)
     {
         var uri = new Uri("file:///Test.tt");
@@ -46,7 +52,7 @@ public class TextDocumentCompletionHandlerTests
                 {
                     Uri = uri
                 },
-                Position = new Position(0, template.IndexOf("|"))
+                Position = TestHelper.GetPosition(template)
             },
             context);
 
