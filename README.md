@@ -1,7 +1,7 @@
 T4 Language for Visual Studio
 =============================
 
-![build status](https://img.shields.io/github/actions/workflow/status/bricelam/T4Language/dotnet.yml?branch=main)
+![build status](https://img.shields.io/github/actions/workflow/status/bricelam/T4Language/dotnet.yml?main) ![latest version](https://img.shields.io/visual-studio-marketplace/v/bricelam.T4Language) ![downloads](https://img.shields.io/visual-studio-marketplace/d/bricelam.T4Language) ![license](https://img.shields.io/badge/license-MS--RL-important)
 
 Adds basic language support for .tt files.
 
