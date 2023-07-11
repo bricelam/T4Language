@@ -67,6 +67,10 @@
       <DependentUpon>assembly.tmSnippet.yml</DependentUpon>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="T4Colors.pkgdef">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="Snippets\assembly.tmSnippet.yml" />
     <Content Include="Snippets\import.tmSnippet">
       <DependentUpon>import.tmSnippet.yml</DependentUpon>
