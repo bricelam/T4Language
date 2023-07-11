@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.Composition;
-using System.Windows.Media;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
 
@@ -35,10 +34,7 @@ static class Classifications
     [UserVisible(true)]
     class ArgumentFormat : ClassificationFormatDefinition
     {
-        public ArgumentFormat()
-        {
-            ForegroundColor = Colors.Red;
-        }
+        public ArgumentFormat() { }
     }
 
     [Export(typeof(EditorFormatDefinition))]
@@ -47,10 +43,7 @@ static class Classifications
     [UserVisible(true)]
     class ArgumentValueFormat : ClassificationFormatDefinition
     {
-        public ArgumentValueFormat()
-        {
-            ForegroundColor = Colors.Blue;
-        }
+        public ArgumentValueFormat() { }
     }
 
     [Export(typeof(EditorFormatDefinition))]
@@ -59,11 +52,7 @@ static class Classifications
     [UserVisible(true)]
     class DelimiterFormat : ClassificationFormatDefinition
     {
-        public DelimiterFormat()
-        {
-            BackgroundColor = Colors.Yellow;
-            ForegroundColor = Colors.Black;
-        }
+        public DelimiterFormat() { }
     }
 
     [Export(typeof(EditorFormatDefinition))]
@@ -72,10 +61,7 @@ static class Classifications
     [UserVisible(true)]
     class DirectiveFormat : ClassificationFormatDefinition
     {
-        public DirectiveFormat()
-        {
-            ForegroundColor = Colors.Maroon;
-        }
+        public DirectiveFormat() { }
     }
 
     [Export(typeof(EditorFormatDefinition))]
@@ -84,9 +70,6 @@ static class Classifications
     [UserVisible(true)]
     class OperatorFormat : ClassificationFormatDefinition
     {
-        public OperatorFormat()
-        {
-            ForegroundColor = Colors.Blue;
-        }
+        public OperatorFormat() { }
     }
 }
