@@ -59,7 +59,7 @@ class TextDocumentManager
 
         string line;
         using var reader = new StringReader(content);
-        while ((line = reader.ReadLine()) is not null)
+        while ((line = await reader.ReadLineAsync()) is not null)
         {
             lines.Add(line);
 
