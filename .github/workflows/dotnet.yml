@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      DevEnvDir: 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\'
     steps:
     - uses: actions/checkout@v3
       with:
@@ -23,6 +25,11 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         path: 'T4Language\\bin\\*\\T4Language.vsix'
+    - name: Test
+      uses: microsoft/vstest-action@main
+      with:
+        testAssembly: '**\\T4Language.Tests.dll'
+        searchFolder: 'T4Language.Tests\\bin\\'
     - name: Publish
       if: ${{ github.repository_owner == 'bricelam' && github.event_name == 'push' }}
       env:
