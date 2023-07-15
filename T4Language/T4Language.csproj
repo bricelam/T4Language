@@ -98,45 +98,12 @@
     <None Include="Syntaxes\t4.tmTheme.yml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\InternalsVisibleTo.cs" />
-    <Compile Include="Server\CapabilitiesManager.cs" />
     <Compile Include="Classifications.cs" />
-    <Compile Include="ContentTypes.cs" />
-    <Compile Include="Server\Handlers\TextDocumentDidChangeHandler.cs" />
-    <Compile Include="Server\Handlers\TextDocumentDidCloseHandler.cs" />
-    <Compile Include="Server\Handlers\TextDocumentDidOpenHandler.cs" />
-    <Compile Include="LanguageClient.cs" />
-    <Compile Include="Server\Handlers\TextDocumentCompletionHandler.cs" />
-    <Compile Include="Server\Handlers\TextDocumentDocumentHighlightHandler.cs" />
-    <Compile Include="Server\Handlers\TextDocumentHoverHandler.cs" />
-    <Compile Include="Server\IClientFacade.cs" />
-    <Compile Include="Server\LanguageServer.cs" />
-    <Compile Include="Server\LspLogger.cs" />
-    <Compile Include="Server\LspServices.cs" />
-    <Compile Include="Server\Metadata\AttributeMetadata.cs" />
-    <Compile Include="Server\Metadata\DirectiveMetadata.cs" />
-    <Compile Include="Server\RequestContext.cs" />
-    <Compile Include="Server\RequestContextFactory.cs" />
-    <Compile Include="Server\SnippetManager.cs" />
-    <Compile Include="Server\TextDocument.cs" />
-    <Compile Include="Server\TextDocumentManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
-      <Version>6.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.LanguageServer.Client">
-      <Version>17.3.3101</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CommonLanguageServerProtocol.Framework">
-      <Version>4.6.0-1.23073.4</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.LanguageServer.Protocol.Extensions">
-      <Version>17.2.8</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Text.UI.Wpf">
       <Version>17.3.198</Version>
     </PackageReference>
@@ -146,18 +113,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.TextMate.Snippets.Translator">
-      <HintPath>$(DevEnvDir)CommonExtensions\Microsoft\TextMate\Microsoft.VisualStudio.TextMate.Snippets.Translator.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Mono.TextTemplating\Mono.TextTemplating.csproj">
-      <Project>{1dbc32ee-ac7d-4c25-8493-42d2d6625ba5}</Project>
-      <Name>Mono.TextTemplating</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
