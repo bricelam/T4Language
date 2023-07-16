@@ -83,11 +83,11 @@
         <array>
           <dict>
             <key>include</key>
-            <string>#method-declaration</string>
+            <string>#statement</string>
           </dict>
           <dict>
             <key>include</key>
-            <string>#statement</string>
+            <string>#method-declaration</string>
           </dict>
           <dict>
             <key>include</key>
@@ -129,11 +129,11 @@
           </dict>
           <dict>
             <key>include</key>
-            <string>#record-declaration</string>
+            <string>#struct-declaration</string>
           </dict>
           <dict>
             <key>include</key>
-            <string>#struct-declaration</string>
+            <string>#record-declaration</string>
           </dict>
           <dict>
             <key>include</key>
@@ -553,18 +553,28 @@
         <array>
           <dict>
             <key>begin</key>
-            <string>\b(using)\b\s+(static)\s+</string>
+            <string>(\b(global)\b\s+)?\b(using)\b\s+(static)\b\s+(\b(unsafe)\b\s+)?</string>
             <key>beginCaptures</key>
             <dict>
-              <key>1</key>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.global.cs</string>
+              </dict>
+              <key>3</key>
               <dict>
                 <key>name</key>
                 <string>keyword.other.using.cs</string>
               </dict>
-              <key>2</key>
+              <key>4</key>
               <dict>
                 <key>name</key>
                 <string>keyword.other.static.cs</string>
+              </dict>
+              <key>6</key>
+              <dict>
+                <key>name</key>
+                <string>storage.modifier.cs</string>
               </dict>
             </dict>
             <key>end</key>
@@ -579,15 +589,25 @@
           </dict>
           <dict>
             <key>begin</key>
-            <string>\b(using)\s+(?=(@?[_[:alpha:]][_[:alnum:]]*)\s*=)</string>
+            <string>(\b(global)\b\s+)?\b(using)\b\s+(\b(unsafe)\b\s+)?(?=(@?[_[:alpha:]][_[:alnum:]]*)\s*=)</string>
             <key>beginCaptures</key>
             <dict>
-              <key>1</key>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.global.cs</string>
+              </dict>
+              <key>3</key>
               <dict>
                 <key>name</key>
                 <string>keyword.other.using.cs</string>
               </dict>
-              <key>2</key>
+              <key>5</key>
+              <dict>
+                <key>name</key>
+                <string>storage.modifier.cs</string>
+              </dict>
+              <key>6</key>
               <dict>
                 <key>name</key>
                 <string>entity.name.type.alias.cs</string>
@@ -613,10 +633,15 @@
           </dict>
           <dict>
             <key>begin</key>
-            <string>\b(using)\s*</string>
+            <string>(\b(global)\b\s+)?\b(using)\s*(?!\(|\s|var)</string>
             <key>beginCaptures</key>
             <dict>
-              <key>1</key>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.global.cs</string>
+              </dict>
+              <key>3</key>
               <dict>
                 <key>name</key>
                 <string>keyword.other.using.cs</string>
@@ -844,36 +869,42 @@
         <key>name</key>
         <string>storage.modifier.cs</string>
         <key>match</key>
-        <string>(?&lt;!\.)\b(new|public|protected|internal|private|abstract|virtual|override|sealed|static|partial|readonly|volatile|const|extern|async|unsafe|ref|required)\b</string>
+        <string>(?&lt;!\.)\b(new|public|protected|internal|private|abstract|virtual|override|sealed|static|partial|readonly|volatile|const|extern|async|unsafe|ref|required|file)\b</string>
       </dict>
       <key>class-declaration</key>
       <dict>
         <key>begin</key>
-        <string>(?=\bclass\b)</string>
+        <string>(?=(\brecord\b\s+)?\bclass\b)</string>
         <key>end</key>
-        <string>(?&lt;=\})</string>
+        <string>(?&lt;=\})|(?=;)</string>
         <key>patterns</key>
         <array>
           <dict>
             <key>begin</key>
             <string>(?x)
+(\b(record)\b\s+)?
 \b(class)\b\s+
 (@?[_[:alpha:]][_[:alnum:]]*)\s*</string>
             <key>beginCaptures</key>
             <dict>
-              <key>1</key>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.record.cs</string>
+              </dict>
+              <key>3</key>
               <dict>
                 <key>name</key>
                 <string>keyword.other.class.cs</string>
               </dict>
-              <key>2</key>
+              <key>4</key>
               <dict>
                 <key>name</key>
                 <string>entity.name.type.class.cs</string>
               </dict>
             </dict>
             <key>end</key>
-            <string>(?=\{)</string>
+            <string>(?=\{)|(?=;)</string>
             <key>patterns</key>
             <array>
               <dict>
@@ -883,6 +914,10 @@
               <dict>
                 <key>include</key>
                 <string>#type-parameter-list</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#parenthesized-parameter-list</string>
               </dict>
               <dict>
                 <key>include</key>
@@ -1242,7 +1277,7 @@
         <key>begin</key>
         <string>(?=\brecord\b)</string>
         <key>end</key>
-        <string>(?&lt;=\})</string>
+        <string>(?&lt;=\})|(?=;)</string>
         <key>patterns</key>
         <array>
           <dict>
@@ -1260,11 +1295,11 @@
               <key>2</key>
               <dict>
                 <key>name</key>
-                <string>entity.name.type.record.cs</string>
+                <string>entity.name.type.class.cs</string>
               </dict>
             </dict>
             <key>end</key>
-            <string>(?=\{)</string>
+            <string>(?=\{)|(?=;)</string>
             <key>patterns</key>
             <array>
               <dict>
@@ -1274,6 +1309,10 @@
               <dict>
                 <key>include</key>
                 <string>#type-parameter-list</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#parenthesized-parameter-list</string>
               </dict>
               <dict>
                 <key>include</key>
@@ -1327,31 +1366,37 @@
       <key>struct-declaration</key>
       <dict>
         <key>begin</key>
-        <string>(?=\bstruct\b)</string>
+        <string>(?=(\brecord\b\s+)?\bstruct\b)</string>
         <key>end</key>
-        <string>(?&lt;=\})</string>
+        <string>(?&lt;=\})|(?=;)</string>
         <key>patterns</key>
         <array>
           <dict>
             <key>begin</key>
             <string>(?x)
+(\b(record)\b\s+)?
 (struct)\b\s+
 (@?[_[:alpha:]][_[:alnum:]]*)</string>
             <key>beginCaptures</key>
             <dict>
-              <key>1</key>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.record.cs</string>
+              </dict>
+              <key>3</key>
               <dict>
                 <key>name</key>
                 <string>keyword.other.struct.cs</string>
               </dict>
-              <key>2</key>
+              <key>4</key>
               <dict>
                 <key>name</key>
                 <string>entity.name.type.struct.cs</string>
               </dict>
             </dict>
             <key>end</key>
-            <string>(?=\{)</string>
+            <string>(?=\{)|(?=;)</string>
             <key>patterns</key>
             <array>
               <dict>
@@ -1361,6 +1406,10 @@
               <dict>
                 <key>include</key>
                 <string>#type-parameter-list</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#parenthesized-parameter-list</string>
               </dict>
               <dict>
                 <key>include</key>
@@ -1486,7 +1535,7 @@
           </dict>
         </dict>
         <key>end</key>
-        <string>(?=\{|where)</string>
+        <string>(?=\{|where|;)</string>
         <key>patterns</key>
         <array>
           <dict>
@@ -4979,7 +5028,7 @@
       <key>numeric-literal</key>
       <dict>
         <key>match</key>
-        <string>(?&lt;!\w)\.?\d(?:(?:[0-9a-zA-Z_\.]|_)|(?&lt;=[eE])[+-])*</string>
+        <string>(?&lt;!\w)\.?\d(?:(?:[0-9a-zA-Z_]|_)|(?&lt;=[eE])[+-]|\.\d)*</string>
         <key>captures</key>
         <dict>
           <key>0</key>
@@ -5211,7 +5260,7 @@
                   </dict>
                   <dict>
                     <key>match</key>
-                    <string>(?:(?:[0-9a-zA-Z_\.]|_)|(?&lt;=[eE])[+-])+</string>
+                    <string>(?:(?:[0-9a-zA-Z_]|_)|(?&lt;=[eE])[+-]|\.\d)+</string>
                     <key>name</key>
                     <string>invalid.illegal.constant.numeric.cs</string>
                   </dict>
