@@ -31,8 +31,8 @@ Options
 
 You can customize the colors under **Tools > Options > Environment > Fonts and Colors**.
 
-Display item      | Default
------------------ | -------
+Display item      | Default (Light)
+----------------- | ---------------
 T4 Argument       | Red
 T4 Argument Value | Blue
 T4 Delimiter      | Yellow (background)

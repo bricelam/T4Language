@@ -34,7 +34,6 @@ static class Classifications
     [UserVisible(true)]
     class ArgumentFormat : ClassificationFormatDefinition
     {
-        public ArgumentFormat() { }
     }
 
     [Export(typeof(EditorFormatDefinition))]
@@ -43,7 +42,6 @@ static class Classifications
     [UserVisible(true)]
     class ArgumentValueFormat : ClassificationFormatDefinition
     {
-        public ArgumentValueFormat() { }
     }
 
     [Export(typeof(EditorFormatDefinition))]
@@ -52,7 +50,6 @@ static class Classifications
     [UserVisible(true)]
     class DelimiterFormat : ClassificationFormatDefinition
     {
-        public DelimiterFormat() { }
     }
 
     [Export(typeof(EditorFormatDefinition))]
@@ -61,7 +58,6 @@ static class Classifications
     [UserVisible(true)]
     class DirectiveFormat : ClassificationFormatDefinition
     {
-        public DirectiveFormat() { }
     }
 
     [Export(typeof(EditorFormatDefinition))]
@@ -70,6 +66,5 @@ static class Classifications
     [UserVisible(true)]
     class OperatorFormat : ClassificationFormatDefinition
     {
-        public OperatorFormat() { }
     }
 }
