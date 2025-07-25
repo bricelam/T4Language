@@ -9,7 +9,7 @@ accept the license, do not use the software.**
     U.S. copyright law.  
     A "contribution" is the original software, or any additions or changes to the software.  
     A "contributor" is any person that distributes its contribution under this license.  
-    "Licensed patents" are acontributor's patent claims that read directly on its contribution.
+    "Licensed patents" are a contributor's patent claims that read directly on its contribution.
     
 2. **Grant of Rights**  
     (A) Copyright Grant- Subject to the terms of this license, including the license conditions and limitations in
@@ -37,4 +37,4 @@ accept the license, do not use the software.**
     (F) The software is licensed "as-is." You bear the risk of using it. The contributors give no express warranties,
     guarantees, or conditions. You may have additional consumer rights under your local laws which this license cannot
     change. To the extent permitted under your local laws, the contributors exclude the implied warranties of 
-    erchantability, fitness for a particular purpose and non-infringement.
+    merchantability, fitness for a particular purpose and non-infringement.
