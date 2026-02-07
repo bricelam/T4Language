@@ -10,17 +10,17 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.1
+      uses: microsoft/setup-msbuild@v2
     - name: Restore dependencies
       run: MSBuild -t:Restore -p:Configuration=Release -m
     - name: Build
       run: MSBuild -p:Configuration=Release -m
     - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v6
       with:
         path: 'T4Language\\bin\\*\\T4Language.vsix'
     - name: Publish
